@@ -269,7 +269,7 @@ const CoursePage: NextPage = ({
 
                       {course ? (
                         <h1 className="text-3xl font-bold lg:hidden">
-                          <span>মূল্যঃ</span>
+                          <span>Price: </span>
                           <span className=" px-3  text-2xl text-gray-800 line-through dark:text-gray-100">
                             {course.fakePrice &&
                               new Intl.NumberFormat('bn-BD', {
@@ -290,7 +290,7 @@ const CoursePage: NextPage = ({
 
                           {course?.fakePrice && (
                             <span className="mx-3 text-xl text-gray-900 dark:text-white">
-                              (এই অফারটি কেবল ৩১ অক্টোবর পর্যন্ত)
+                              (Limited offer)
                             </span>
                           )}
                         </h1>
@@ -314,7 +314,7 @@ const CoursePage: NextPage = ({
                               <Then>
                                 <Loading />
                               </Then>
-                              <Else>কোর্সটি কিনুন</Else>
+                              <Else>Buy this Course</Else>
                             </If>
                           </button>
                         )}

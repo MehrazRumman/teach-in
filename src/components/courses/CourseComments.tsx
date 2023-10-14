@@ -14,10 +14,10 @@ function CourseComment({ reviews }: CourseCommentProps) {
   return (
     <section className="w-[90%]">
       <h1 className="mb-6 text-3xl font-semibold md:text-4xl">
-        শিক্ষার্থীদের মতামতঃ
+        Review and Rating
       </h1>
 
-      {reviews && reviews.length === 0 && <p>এখনো কেউ মতামত জানায়নি!</p>}
+      {reviews && reviews.length === 0 && <p>No rating yet</p>}
 
       <div
         className={`grid-col-1 grid ${

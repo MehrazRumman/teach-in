@@ -21,7 +21,7 @@ function CourseDescription({ description }: CourseDescriptionProps) {
     <MathJaxContext>
       <div className="smooth-effect w-[90%] ">
         <h1 className="mb-2 mt-4 text-3xl font-semibold md:text-4xl ">
-          কোর্স সম্পর্কেঃ{' '}
+          About this course
         </h1>
         <MathJax>
           <article

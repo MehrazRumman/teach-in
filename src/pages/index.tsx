@@ -48,7 +48,7 @@ const Home: NextPage<HomePageProps> = ({
         image={
           'https://mp-bian.com/api/download/1696681328025_thumb%20(3)-min%20(1).jpg'
         }
-        description={'Book, Course, Model Test, Articles by Teach-In '}
+        description={'Course, Tutors, Model Test, Articles in Teach-In '}
       />
 
       <div className="relative z-40 mx-auto mt-4 h-fit w-[95%] md:hidden">

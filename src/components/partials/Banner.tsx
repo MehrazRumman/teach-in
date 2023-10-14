@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { memo } from 'react';
 
 const FeatureCard = ({ title, description }) => (
-  <div className="rounded-lg bg-white p-6 shadow-md">
+  <div className="rounded-lg  p-6 text-gray-800 shadow-md dark:text-white">
     <h2 className="mb-4 text-xl font-semibold">{title}</h2>
     <p>{description}</p>
   </div>

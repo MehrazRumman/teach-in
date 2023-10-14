@@ -23,7 +23,7 @@ function MyCourses() {
       {data && data?.courses?.length > 0 && (
         <div className="my-6 h-fit w-full text-gray-800 dark:text-white">
           <h1 className=" center   px-3 text-3xl font-bold capitalize md:px-6 md:text-4xl">
-            আপনার কেনা কোর্সসমূহ
+            Your enrolled courses
           </h1>
 
           <div className="mx-auto my-4 w-full px-3 md:px-6">

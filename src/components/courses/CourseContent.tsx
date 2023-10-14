@@ -24,7 +24,7 @@ function CourseContent({
 
       <section className="w-[90%]">
         <h1 className="mt-2 text-3xl font-semibold md:text-4xl">
-          কোর্সে যা যা থাকছে:
+          What contents are included in this course
         </h1>
 
         <div className="my-2 flex flex-wrap justify-between space-y-2 md:flex-nowrap">

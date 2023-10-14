@@ -8,7 +8,7 @@ export default function CourseAchievement({ targets }: CourseAchievementProps) {
   return (
     <section className=" flex w-[90%]  flex-col space-y-4">
       <h1 className="mt-2 text-3xl font-semibold md:text-4xl">
-        আপনি যা শিখতে পারবেনঃ
+        What you will learn
       </h1>
 
       <ul className="grid grid-cols-1 gap-4 gap-y-4 md:grid-cols-2">
