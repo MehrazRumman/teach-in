@@ -3,8 +3,6 @@ import type { TestType } from '~/types';
 import Countdown from 'react-countdown-now';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
 import {
-  FaArrowLeft,
-  FaArrowRight,
   FaCheckCircle,
   FaInfoCircle,
   FaPlayCircle,
@@ -31,7 +29,6 @@ import { useTheme } from 'next-themes';
 import router from 'next/router';
 import Modal from '~/components/partials/Modal';
 import CryptoJS from 'crypto-js';
-import ScrollToTop from 'react-scroll-to-top';
 
 interface ExamQuestionsProps {
   test?: TestType | null;
@@ -45,21 +42,9 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
 
   const { status: sessionStatus } = useSession();
 
-  if (!session?.user) {
-    toast.error('You need to log in first to give the exam.');
-    router.push('/login');
-  }
-
   const divRef = useRef(null);
 
   const componentRef = useRef(null);
-
-  const [page, setPage] = useState(1);
-  const itemsPerPage = 30;
-
-  // Calculate the index of the first and last item on the current page
-  const firstIndex = (page - 1) * itemsPerPage;
-  const lastIndex = page * itemsPerPage;
 
   const scrollToComponent = () => {
     // Access the DOM node of the component using the ref
@@ -324,7 +309,7 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
   useEffect(() => {
     if (test?.results?.length === 1 && !givingReExam) {
       setExamGivenEarlier(true);
-      setResult((test?.results[0] as Result) || {});
+      setResult(test?.results[0] as Result);
       setSelectedOptionIndexes(test?.results[0]?.selectedOptionIndexes || []);
       showResult();
     }
@@ -339,6 +324,33 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
 
     // Replace "yourActualPassword" with the actual password to check against
     if (password === '69') {
+      toast.loading('Loading Questions...');
+
+      const storedValue = localStorage.getItem(`timer_${test?.id}`);
+
+      if (storedValue) {
+        setRemainingTime(
+          (parseInt(storedValue, 10) ^ xorKey) -
+            Number(questionLength * 0.1) * markPerQuestion * 60,
+        );
+      } else {
+        setRemainingTime(questionLength * markPerQuestion * 60);
+      }
+      const encryptedArray = localStorage.getItem(`result_${test?.id}`);
+      if (encryptedArray !== null) {
+        // Decrypt the stored array using AES decryption
+        const bytes = CryptoJS.AES.decrypt(encryptedArray, secretKey);
+        const decryptedArray = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        setSelectedOptionIndexes(decryptedArray);
+      } else {
+        setSelectedOptionIndexes([]);
+      }
+
+      scrollToComponent();
+      setStartPageExam(true);
+      setIsModalOpen(false);
+
+      toast.dismiss();
     } else {
       toast.error("Passcode doesn't matched");
     }
@@ -363,28 +375,6 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
       updateResult('useEffect TimeUp');
     }
   }, [isTimeUp]);
-
-  const optionIndexes = [
-    [1, 2],
-    [3, 4],
-  ];
-
-  // Slice the items array to get only the items on the current page
-  const currentItems = test?.questions.slice(firstIndex, lastIndex);
-
-  // Define a function to handle the next button click
-  const handleNext = () => {
-    // Increment the page number by one
-    setPage(page + 1);
-    // Scroll to the top of the page using the scrollTo method
-    window.scrollTo(0, 0);
-  };
-  const handlePrevious = () => {
-    // Decrement the page number by one
-    setPage(page - 1);
-    // Scroll to the top of the page using the scrollTo method
-    window.scrollTo(0, 0);
-  };
 
   return (
     <>
@@ -667,8 +657,12 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
                 <h1 ref={componentRef} className="p:2 mt-2 text-3xl">
                   {showExplanation ? 'Questions with Solution' : 'Questions'}
                 </h1>
+                {test?.questions.map((question, questionIndex) => {
+                  const optionIndexes = [
+                    [1, 2],
+                    [3, 4],
+                  ];
 
-                {currentItems?.map((question, questionIndex) => {
                   return (
                     <div
                       key={questionIndex}
@@ -679,7 +673,7 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
                       <div className="flex flex-col">
                         <div className="flex flex-row justify-between">
                           <div className="m-4 flex w-full flex-row justify-between rounded-lg">
-                            {firstIndex + questionIndex + 1}
+                            {questionIndex + 1}
                             {showExplanation && (
                               <div className="flex w-full flex-col items-center justify-center lg:flex-row">
                                 {question.boardExams?.map(
@@ -795,8 +789,8 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
                                           className={`w-fit `}
                                           dangerouslySetInnerHTML={{
                                             __html:
-                                              question[
-                                                `option${optionIndex as number}`
+                                              (question as any)[
+                                                `option${optionIndex}`
                                               ] || 0,
                                           }}
                                         />
@@ -829,30 +823,6 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
                     </div>
                   );
                 })}
-
-                {test?.questions && test?.questions.length > 30 && (
-                  <div className="flex w-full flex-row items-center justify-between lg:w-3/5 ">
-                    <button
-                      onClick={handlePrevious}
-                      disabled={page <= 1}
-                      className=" flex flex-row items-center rounded-full bg-blue-500 px-4 py-2 text-white"
-                    >
-                      <FaArrowLeft className="text-2xl" />
-                      Previous
-                    </button>
-
-                    <button
-                      onClick={handleNext}
-                      disabled={lastIndex >= test.questions.length}
-                      className=" flex flex-row items-center rounded-full bg-blue-500 px-4 py-2 text-white"
-                    >
-                      Next
-                      <FaArrowRight className="text-2xl" />
-                    </button>
-                  </div>
-                )}
-
-                <ScrollToTop smooth className="h-24 w-24" />
 
                 {/* Fixed position div */}
                 <div className="text-purple glow-animation fixed bottom-4 left-1/2 my-2 flex w-fit -translate-x-1/2 transform items-center justify-center rounded-full bg-gray-200 px-3 dark:bg-gray-800 dark:text-white md:bottom-10 md:right-4">
@@ -917,50 +887,9 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
                       if (examGivenEarlier) {
                         startReExam();
                       } else {
-                        // setIsModalOpen(true);
-                        // // scrollToComponentStart();
-                        // // setStartPageExam(true);
-
-                        toast.loading('Loading Questions...');
-
-                        const storedValue = localStorage.getItem(
-                          `timer_${test?.id}`,
-                        );
-
-                        if (storedValue) {
-                          setRemainingTime(
-                            (parseInt(storedValue, 10) ^ xorKey) -
-                              Number(questionLength * 0.1) *
-                                markPerQuestion *
-                                60,
-                          );
-                        } else {
-                          setRemainingTime(
-                            questionLength * markPerQuestion * 60,
-                          );
-                        }
-                        const encryptedArray = localStorage.getItem(
-                          `result_${test?.id}`,
-                        );
-                        if (encryptedArray !== null) {
-                          // Decrypt the stored array using AES decryption
-                          const bytes = CryptoJS.AES.decrypt(
-                            encryptedArray,
-                            secretKey,
-                          );
-                          const decryptedArray = JSON.parse(
-                            bytes.toString(CryptoJS.enc.Utf8),
-                          );
-                          setSelectedOptionIndexes(decryptedArray);
-                        } else {
-                          setSelectedOptionIndexes([]);
-                        }
-
-                        scrollToComponent();
-                        setStartPageExam(true);
-                        setIsModalOpen(false);
-
-                        toast.dismiss();
+                        setIsModalOpen(true);
+                        // scrollToComponentStart();
+                        // setStartPageExam(true);
                       }
                     }
                   }}
