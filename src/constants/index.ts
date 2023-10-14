@@ -120,9 +120,6 @@ export const playerOptions = {
   playbackRate: true,
 
   autoSize: true,
-  // autoMini: true,
-  // poster:
-  //   'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg',
 };
 
 export const categories = [
@@ -133,7 +130,6 @@ export const categories = [
   { title: 'Tutors', url: `/${PATHS.BROWSE_TUTOR}` },
   { title: 'Article', url: `/${PATHS.BROWSE_ARTICLE}` },
 ];
-
 export const swiperBreakPoints = {
   1: {
     slidesPerView: 2,
