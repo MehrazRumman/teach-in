@@ -102,7 +102,7 @@ export default function VerifyWithdrawal({
                   }}
                   className="w-fit min-w-[14rem] rounded-2xl border border-gray-500 px-4 py-3 dark:border-white"
                 >
-                  Phê duyệt tất cả
+                  Approve all
                 </button>
               </>
             )}
