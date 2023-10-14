@@ -46,7 +46,7 @@ The proposed solution to create an education platform where students can enroll 
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/diagram.png"   ></p>
 
 # ER Diagram 
-<p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/prisma-erd-2.svg"></p>
+<p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/er.svg"></p>
 
 
 # User Interaction:
