@@ -1,4 +1,4 @@
-# Teach-In (Upgrade Yourself)
+# Teach-In 
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/logo.png"  width="150" height="150"  ></p>
 
 # Introduction
@@ -87,19 +87,19 @@ An educational technology (EdTech) platform that includes online classes, live c
 
 9. **Personalized Learning Paths:** Adaptive learning algorithms that customize the curriculum based on individual students' strengths and weaknesses.
 
-10. **Virtual Labs:** For subjects that require hands-on experimentation, virtual labs provide a way to perform experiments online.
+10. **Virtual Labs:** For subjects that require hands-on experimentation, virtual labs provide a way to perform experiments online.(Future work)
 
 11. **Peer Review:** A system that allows students to evaluate and provide feedback on each other's work, fostering collaboration and critical thinking.
 
-12. **Mobile App:** A mobile application for on-the-go learning, allowing students to access content from their smartphones or tablets.
+12. **Mobile App:** A mobile application for on-the-go learning, allowing students to access content from their smartphones or tablets.(Future work)
 
 13. **Analytics and Reporting:** Tools for educators to analyze student performance data and identify areas that may need improvement.
 
 14. **Resource Library:** A repository of educational materials, such as e-books, articles, videos, and other supplementary resources.
 
-15. **Parent/Teacher Communication:** A feature that allows parents to monitor their child's progress and communicate with teachers when needed.
+15. **Parent/Teacher Communication:** A feature that allows parents to monitor their child's progress and communicate with teachers when needed.(Future work)
 
-16. **AI-Powered Recommendations:** An intelligent recommendation system that suggests relevant courses and resources based on a student's interests and past performance.
+16. **AI-Powered Recommendations:** An intelligent recommendation system that suggests relevant courses and resources based on a student's interests and past performance.(Future work)
 
 17. **Feedback Mechanism:** A way for students to provide feedback on the platform itself, helping in continuous improvement.
 
