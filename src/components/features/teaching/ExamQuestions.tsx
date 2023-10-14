@@ -185,7 +185,9 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
   };
 
   const [experience, setExperience] = useState(
-    test?.results[0]?.experience || '',
+    test?.results && test?.results[0] && test?.results[0]?.experience
+      ? test?.results[0]?.experience
+      : '',
   );
 
   const startExam = () => {
