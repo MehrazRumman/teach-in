@@ -1,0 +1,234 @@
+@import 'node_modules/modern-normalize/modern-normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+}
+
+@layer components {
+}
+
+@layer utilities {
+  .btn-follow-theme {
+    @apply text-gray-700  hover:text-white dark:border-white/70 dark:text-white/70 dark:hover:bg-dark-background;
+  }
+  .smooth-effect {
+    @apply transition-all duration-300;
+  }
+  .relative-x-center {
+    @apply left-1/2 -translate-x-1/2;
+  }
+  .absolute-center {
+    @apply flex items-center justify-center;
+  }
+  .relative-center {
+    @apply left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+  .full-size {
+    @apply h-full w-full;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  font-size: 1.6rem;
+  text-rendering: optimizeSpeed;
+  height: fit-content;
+  overflow-x: hidden;
+  transition-duration: 250ms;
+}
+
+*:focus {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-2xl bg-gray-400;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+textarea {
+  resize: none;
+}
+
+#nprogress .bar {
+  background: #facc15 !important;
+  z-index: 1500 !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: yellow !important;
+  border-left-color: yellow !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px red, 0 0 5px red !important;
+}
+
+//thanks to: https://9elements.github.io/fancy-border-radius
+.random-border-radius-var-1 {
+  border-radius: 30% 70% 70% 30% / 38% 36% 64% 62%;
+}
+.random-border-radius-var-2 {
+  border-radius: 43% 57% 53% 47% / 38% 32% 68% 62%;
+}
+
+.tab-active {
+  background-color: #ffffff !important;
+}
+
+.quill {
+  .ql-toolbar {
+    top: 0;
+    position: sticky;
+    background-color: #ffffff;
+    z-index: 100 !important;
+    .ql-picker-options {
+      z-index: 200 !important;
+    }
+  }
+}
+
+.btn.btn--file.btn--primary.btn--upload {
+  height: fit-content;
+}
+
+.uploader__image-editor__actions.btn-group {
+  .btn.btn--primary {
+    height: fit-content;
+  }
+}
+
+.uploader__main-screen {
+  .btn {
+    height: fit-content;
+  }
+  .btn-group {
+    align-items: center;
+  }
+}
+.excalidraw.excalidraw-modal-container {
+  z-index: 500 !important;
+}
+
+.react-ios-time-picker-main {
+  width: fit-content !important;
+}
+
+.responsive-youtube-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%; // 16:9 aspect ratio
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Media query for large devices
+@media (min-width: 1200px) {
+  .responsive-youtube-container {
+    // Adjust the width and margin to make the video smaller on large devices
+    width: 60%; // You can change this value to your desired width
+    margin: 0 auto;
+    // Adjust the padding-top to maintain the same aspect ratio (16:9)
+    padding-top: calc(60% * 0.5625); // 0.5625 = 9/16
+  }
+}
+
+.hide-clear-button .ql-clear {
+  display: none;
+}
+.glow-animation {
+  animation: glowing 1s ease-in-out infinite;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px rgba(172, 78, 201, 0.432);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(139, 69, 148, 0.452);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(153, 100, 212, 0.514);
+  }
+}
+
+.dark-div img {
+  mix-blend-mode: luminosity;
+  filter: brightness(100%) invert(100%);
+}
+
+.normal-div img {
+  mix-blend-mode: normal;
+  filter: none;
+}
+
+/* Add cool colors for not selected tabs */
+.tab {
+  background-color: #f0f4f8;
+  color: #718096;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add cool colors for selected tab */
+.tab-active {
+  background-color: #60a5fa;
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pdfContainer {
+  height: 500px;
+  overflow: auto;
+  border-radius: 5px;
+  border: 0px solid #ccc;
+}
+
+/* Media query for screens smaller than 768px (mobile screens) */
+@media (max-width: 768px) {
+  .pdfContainer {
+    height: 450px; /* Adjust height for mobile screens */
+    width: 350px;
+    overflow: auto;
+    border-radius: 5px;
+    border: 0px solid #ccc;
+  }
+}

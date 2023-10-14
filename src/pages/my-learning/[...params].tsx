@@ -1,0 +1,64 @@
+import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { Case, Default, Else, If, Switch, Then } from 'react-if';
+import Loading from '~/components/buttons/Loading';
+import MyCourses from '~/components/features/learning-dashboard/MyCourses';
+import MyDashboard from '~/components/features/learning-dashboard/MyDashboard';
+import MyLearningSidebar from '~/components/features/learning-dashboard/MyLearningSidebar';
+import { trpc } from '~/utils/trpc';
+import Head from '~/components/shared/Head';
+import MyBooks from '~/components/features/learning-dashboard/MyBooks';
+
+const MyLearningPage: NextPage = () => {
+  const router = useRouter();
+
+  const { data, status } = trpc.user.findEnrolledCourses.useQuery();
+
+  return (
+    <>
+      <Head title="Study - Teach-In" />
+
+      <div className="min-h-screen w-full text-gray-600 dark:bg-background_dark dark:text-white md:pl-[16rem]">
+        <MyLearningSidebar />
+
+        <If condition={Boolean(data && (data?.courses || data?.books))}>
+          <Then>
+            {router.query?.params && (
+              <Switch>
+                <Case condition={router.query?.params[0] === 'course'}>
+                  <MyCourses data={data} status={status} />
+                </Case>
+
+                <Case condition={router.query?.params[0] === 'pdf_books'}>
+                  <MyBooks data={data} status={status} />
+                </Case>
+
+                <Case condition={router.query?.params[0] === 'dashboard'}>
+                  <MyDashboard data={data} status={status} />
+                </Case>
+                <Default>{null}</Default>
+              </Switch>
+            )}
+          </Then>
+          <Else>
+            {status === 'loading' ? (
+              <div className="absolute-center min-h-screen">
+                <Loading />
+              </div>
+            ) : (
+              <div className="min-h-screen w-full pt-[7rem] md:pt-[5rem]">
+                <div className="mx-auto flex w-[90%] flex-col md:w-[80%]">
+                  <h1 className="flex space-x-4 text-3xl">
+                    No data for your Course yet
+                  </h1>
+                </div>
+              </div>
+            )}
+          </Else>
+        </If>
+      </div>
+    </>
+  );
+};
+
+export default MyLearningPage;

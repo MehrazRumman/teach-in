@@ -1,0 +1,7 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "commentTranslate.source": "Google",
+  "commentTranslate.multiLineMerge": false
+}

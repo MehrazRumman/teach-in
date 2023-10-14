@@ -1,0 +1,51 @@
+{
+  "name": "Teach-In",
+  "short_name": "Teach-In",
+  "start_url": "/",
+  "display": "standalone",
+  "description": "Book, Course, Exams, Article and more from Teach-In",
+  "lang": "bn-BD",
+  "theme_color": "#794AB8",
+  "background_color": "#f8eff8",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "images/logo.svg",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "images/logo.svg",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "images/logo.svg",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "images/logo.svg",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "images/logo.svg",
+      "sizes": "1919x959",
+      "type": "image/png",
+      "description": "Book, Course, Exams, Articl and more from Teach-In"
+    }
+  ],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Teach-In",
+      "url": "/",
+      "description": "Book, Course, Exams, Article and more from Teach-In"
+    }
+  ]
+}
