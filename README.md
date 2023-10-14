@@ -59,11 +59,11 @@ Please Zoom in (+)
 
 
 # User Interaction:
-* 1. Weekly/Monthly Contest on various topics.
-* 2. Quiz generation for contest using AI model 
-* 3. Relevant Image generation on Contest topics using AI model to make the content more interactive.
-* 4. Leaderboard on every contest and exciting prize pool for the top performers.
-* 5. Interactive problem-solving platform for Coding Enthusiast
+*  Weekly/Monthly Contest on various topics.
+*  Quiz generation for contest using AI model 
+*  Relevant Image generation on Contest topics using AI model to make the content more interactive.
+*  Leaderboard on every contest and exciting prize pool for the top performers.
+*  Interactive problem-solving platform for Coding Enthusiast
 
 
 # Features 
