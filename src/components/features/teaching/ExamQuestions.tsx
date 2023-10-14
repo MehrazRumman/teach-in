@@ -53,20 +53,20 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (remainingTime.seconds > 0) {
+      if (remainingTimeContest?.seconds > 0) {
         setRemainingTimeContest((prevTime) => ({
           ...prevTime,
           seconds: prevTime.seconds - 1,
         }));
-      } else if (remainingTime.minutes > 0) {
+      } else if (remainingTimeContest?.minutes > 0) {
         setRemainingTimeContest((prevTime) => ({
           hours: prevTime.hours,
           minutes: prevTime.minutes - 1,
           seconds: 59,
         }));
-      } else if (remainingTime.hours > 0) {
+      } else if (remainingTimeContest?.hours > 0) {
         setRemainingTimeContest({
-          hours: remainingTime.hours - 1,
+          hours: remainingTimeContest?.hours - 1,
           minutes: 59,
           seconds: 59,
         });
@@ -74,7 +74,7 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [remainingTime]);
+  }, [remainingTimeContest]);
 
   //get user from session
   const { data: session } = useSession();
