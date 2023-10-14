@@ -2,7 +2,7 @@
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/logo.png"  width="150" height="150"  ></p>
 
 # Introduction
-Teach-In is a leading educational technology (edutech) company dedicated to transforming and revolutionizing the way people learn and access education. Established with a vision to make education more accessible, engaging, and effective, Teach-In has been at the forefront of technological innovation in the education sector.
+"Teach-In" is a leading educational platform (ed-tech) that is dedicated to transforming and revolutionizing the way people learn and access education. Established with a vision to make education more accessible, engaging, and effective, "Teach-In" has been at the forefront of technological innovation in the education sector.
 <br>
 
 # Solution Idea
