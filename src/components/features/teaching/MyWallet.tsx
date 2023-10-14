@@ -251,7 +251,7 @@ export default function MyWallet() {
                       <th></th>
                       <th className="whitespace-nowrap  px-4 py-3">Bank</th>
                       <th className="whitespace-nowrap  px-4 py-3">
-                        Date created
+                        Creation Date
                       </th>
                       <th className="whitespace-nowrap  px-4 py-3">
                         Account number
