@@ -10,7 +10,7 @@ datasource db {
   provider     = "mysql"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
-}
+} 
 
 enum Role {
   STUDENT
@@ -220,7 +220,7 @@ model Test {
   order                 Int            @default(0)
   results               Result[]
   password              String?        @db.Text
-  verified              VERIFIED_STATE @default(PENDING)
+  verified              VERIFIED_STATE @default(APPROVED)
   createdAt             DateTime       @default(now())
   updatedAt             DateTime       @updatedAt
   published             Boolean        @default(false)
@@ -233,6 +233,11 @@ model Test {
   timePerQuestion       Float          @default(1)
   markReducePerQuestion Float          @default(0.25)
   markPerQuestion       Float          @default(1)
+
+  contestMode         Boolean        @default(false)
+  contestStart        DateTime?
+  contestEnd          DateTime?
+  contestDuration     Float?
 
   @@index([categoryId])
   @@index([userId])
