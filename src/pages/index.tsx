@@ -109,10 +109,10 @@ const Home: NextPage<HomePageProps> = ({
           e.preventDefault();
           setIsOpen(true);
         }}
-        className="fixed bottom-8 right-8 flex flex-row items-center rounded-full bg-blue-500 px-6 py-4 text-4xl font-bold text-white shadow-2xl hover:bg-blue-800  "
+        style={{ zIndex: 9999 }} // Set a higher z-index
+        className="fixed bottom-8 right-8 flex flex-row items-center rounded-full bg-blue-500 px-6 py-4 text-4xl font-bold text-white shadow-2xl hover:bg-blue-800"
       >
         <RiArrowLeftRightFill />
-
         <span>ASK AI</span>
       </button>
 

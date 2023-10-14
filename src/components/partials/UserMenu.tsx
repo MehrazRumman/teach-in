@@ -113,14 +113,7 @@ function UserMenu({ show, setShow }: UserMenuProps) {
           href={`/${PATHS.MY_LEARNING}/${PATHS.PDFS}`}
           className="smooth-effect flex cursor-pointer items-center space-x-4 rounded-2xl p-3 hover:bg-gray-200 dark:hover:bg-black"
         >
-          <BsFilePdf className="h-6 w-6" /> <span>PDF Notes</span>
-        </Link>
-
-        <Link
-          href={`/${PATHS.USER}/${PATHS.USER_PROFILE}?section=book-order-track`}
-          className="smooth-effect flex cursor-pointer items-center space-x-4 rounded-2xl p-3 hover:bg-gray-200 dark:hover:bg-black"
-        >
-          <GrOrderedList className="h-6 w-6" /> <span>Track Book Order</span>
+          <BsFilePdf className="h-6 w-6" /> <span>My PDF Notes</span>
         </Link>
 
         <Link
@@ -143,15 +136,6 @@ function UserMenu({ show, setShow }: UserMenuProps) {
           className="smooth-effect flex cursor-pointer items-center space-x-4 rounded-2xl p-3 hover:bg-gray-200 dark:hover:bg-black"
         >
           <BookmarkIcon className="h-6 w-6" /> <span>Course tracking</span>
-        </Link>
-
-        <hr className="mx-auto my-4 w-[80%] dark:border-white/30" />
-
-        <Link
-          href={`/${PATHS.USER}/${PATHS.USER_PROFILE}?section=reminder`}
-          className="smooth-effect flex cursor-pointer items-center space-x-4 rounded-2xl p-3 hover:bg-gray-200 dark:hover:bg-black"
-        >
-          <ClockIcon className="h-6 w-6" /> <span>Learning Reminder</span>
         </Link>
 
         <hr className="mx-auto my-4 w-[80%] dark:border-white/30" />
