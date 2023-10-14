@@ -12,8 +12,6 @@ import PopularTests from '~/components/partials/PopularTests';
 import PopularBooks from '~/components/partials/PopularBooks';
 import PopularArticles from '~/components/partials/PopularArticles';
 import Search from '~/components/shared/Search';
-import ExamBar from '~/components/partials/ExamBar';
-import Link from 'next/link';
 import MyCourses from '~/components/partials/MyCourses';
 
 interface HomePageProps {

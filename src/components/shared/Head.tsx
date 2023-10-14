@@ -11,7 +11,7 @@ interface HeadProps {
 export default function Head({
   title = 'Teach-In',
   description = 'Notes, Courses, Articles, Model Test, and more from Teach-In',
-  image = 'https://i.ibb.co/KXnZM4f/mpbian.jpg',
+  image = 'https://i.ibb.co/KXnZM4f/teach-in.jpg',
 }: HeadProps) {
   const { asPath } = useRouter();
 

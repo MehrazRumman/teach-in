@@ -26,6 +26,9 @@ const test = async (req: NextApiRequest, res: NextApiResponse) => {
     markPerQuestion,
     markReducePerQuestion,
     timePerQuestion,
+    contestMode,
+    contestStart,
+    contestEnd,
   } = body;
 
   switch (method) {
@@ -49,6 +52,9 @@ const test = async (req: NextApiRequest, res: NextApiResponse) => {
 
       await Promise.allSettled([await cleanQuestionsByTest(slugName)]);
 
+      console.log(contestStart);
+      console.log(contestEnd);
+
       // Update test if non-existent:
       const testPayload = {
         name,
@@ -67,7 +73,12 @@ const test = async (req: NextApiRequest, res: NextApiResponse) => {
         markPerQuestion: toFloat(markPerQuestion),
         markReducePerQuestion: toFloat(markReducePerQuestion),
         timePerQuestion: toFloat(timePerQuestion),
+        contestMode,
+        contestStart: new Date(contestStart),
+        contestEnd: new Date(contestEnd),
       };
+
+      console.log(testPayload);
 
       const test = await prisma.test.upsert({
         where: {

@@ -452,4 +452,140 @@ export const testRouter = router({
 
       return { tests, totalPages: Math.ceil(totalRecords / limit) };
     }),
+
+  findContestsByFilters: publicProcedure
+    .input(
+      z.object({
+        category: z.string().optional(),
+        subCategory: z.string().optional(),
+        section: z.string().optional(),
+        sortBy: z.string().optional(),
+        object: z.string().optional(),
+        price: z.string().optional(),
+        testState: z.string().optional(),
+        userId: z.string().optional(),
+        limit: z.number(),
+        page: z.string(),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      const {
+        category,
+        sortBy,
+        price,
+        limit,
+        page,
+        subCategory,
+        section,
+        userId,
+      } = input;
+
+      const whereConditions = new Map();
+      const sortCondition = new Map();
+
+      if (subCategory && subCategory !== 'All') {
+        whereConditions.set('subCategory', subCategory);
+      }
+
+      if (category && category !== 'All')
+        whereConditions.set('category', { name: category });
+
+      if (category && category && section !== 'All') {
+        whereConditions.set('section', section);
+      }
+      //TODO
+      //Only Geomatry is Allowed
+      // whereConditions.set('section', "জ্যামিতি");
+
+      if (price) {
+        const stringPrice = price.toLowerCase();
+
+        if (stringPrice.toLowerCase() === 'free') {
+          whereConditions.set('price', 0);
+        }
+        if (stringPrice.toLowerCase() === 'paid') {
+          whereConditions.set('price', { gt: 0 });
+        }
+      }
+
+      if (sortBy) {
+        const sort_by = sortBy.toLowerCase();
+        if (sort_by === 'Popular') {
+          sortCondition.set('createdAt', 'desc');
+        }
+
+        if (sort_by === 'Questions') {
+          sortCondition.set('questions', { _count: 'desc' });
+          whereConditions.set('questions', {
+            some: { id: { not: undefined } },
+          });
+        }
+
+        if (sort_by === 'Parcipants') {
+          sortCondition.set('results', { _count: 'desc' });
+          whereConditions.set('results', { some: { id: { not: undefined } } });
+        }
+      } else {
+        sortCondition.set('order', 'asc');
+      }
+
+      // ignore private test:
+      whereConditions.set('publishMode', 'PUBLIC');
+      whereConditions.set('contestMode', true);
+      // ignore pending apprev:
+      // whereConditions.set('verified', 'APPROVED');
+
+      const [totalRecords, tests] = await ctx.prisma.$transaction([
+        ctx.prisma.test.count({ where: Object.fromEntries(whereConditions) }),
+        ctx.prisma.test.findMany({
+          where: Object.fromEntries(whereConditions),
+          select: {
+            id: true,
+            name: true,
+            slug: true,
+            contestMode: true,
+            contestDuration: true,
+            contestStart: true,
+            contestEnd: true,
+            category: {
+              select: {
+                name: true,
+              },
+            },
+            subCategory: true,
+            section: true,
+            //question count
+            questions: {
+              select: {
+                id: true,
+              },
+            },
+            //participant count
+
+            results: {
+              where: { userId: userId },
+              select: {
+                totalMarks: true,
+                percentage: true,
+                createdAt: true,
+                totalQuestions: true,
+              },
+            },
+
+            addedBy: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            price: true,
+          },
+          orderBy: Object.fromEntries(sortCondition),
+          take: limit,
+          skip: (Number(page) - 1) * limit,
+        }),
+      ]);
+
+      return { tests, totalPages: Math.ceil(totalRecords / limit) };
+    }),
 });

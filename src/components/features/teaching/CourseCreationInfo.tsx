@@ -34,6 +34,7 @@ import { FaFacebook } from 'react-icons/fa';
 
 export interface IFormInput {
   courseName: string;
+
   detailsDescription: string;
   courseTargets: string[];
   courseRequirements: string[];

@@ -11,7 +11,6 @@ const generateVerificationCode = (): string => {
   return code;
 };
 
-
 const loginHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     try {
@@ -27,10 +26,10 @@ const loginHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       await sendSMS(
         number,
-        `Welcome back! Your mpbian login verification code is: ${verificationCode}`,
+        `Welcome back! Your teach-in login verification code is: ${verificationCode}`,
       );
 
-      res.status(200).json({ verificationCode : encrypt(verificationCode)  });
+      res.status(200).json({ verificationCode: encrypt(verificationCode) });
     } catch (error) {
       console.error('Login Error:', error);
       res.status(500).json({ message: 'Internal server error' });

@@ -70,7 +70,7 @@ const LearningPage: NextPage = () => {
           p-4"
             >
               <span>
-                <BsBook className=" inline-block h-6 w-6" /> {book.pages} Pages
+                <BsBook className=" inline-block h-6 w-6" /> {book?.pages} Pages
               </span>
             </div>
           </div>

@@ -14,7 +14,7 @@ import { useSession } from 'next-auth/react';
 import axios from 'axios';
 import { RiShieldUserLine } from 'react-icons/ri';
 import Link from 'next/link';
-import { BiCategoryAlt, BiExport, BiImport } from 'react-icons/bi';
+import { BiCategoryAlt, BiExport, BiImport, BiTime } from 'react-icons/bi';
 import type { QuestionType, TestType } from '~/types';
 import QuestionCreationTest from '../features/teaching/QuestionCreationTest';
 import { toast } from 'react-hot-toast';
@@ -417,6 +417,80 @@ export default function TestCreation() {
 };
         */}
                   </div>
+
+                  <div className="my-4 flex w-full flex-col px-6">
+                    <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
+                      <h2 className="flex items-center space-x-3">
+                        <BiTime className="h-8 w-8" /> <span>Contest ?</span>
+                      </h2>
+                    </div>
+
+                    <select
+                      value={testLive?.contestMode ? 'YES' : 'NO'}
+                      onChange={(e) => {
+                        setTestLive((prev) => {
+                          return {
+                            ...prev,
+                            contestMode: e.target.value === 'YES',
+                          };
+                        });
+                      }}
+                      className="my-4 max-w-md rounded-xl p-4"
+                    >
+                      <option defaultValue="Category:">NO</option>
+                      <option defaultValue="Category:">YES</option>
+                    </select>
+                  </div>
+
+                  {testLive?.contestMode && (
+                    <>
+                      <div className="my-4 flex w-full flex-col px-6">
+                        <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
+                          <h2 className="flex items-center space-x-3">
+                            <BiTime className="h-8 w-8" />{' '}
+                            <span>Contest Start Time</span>
+                          </h2>
+                        </div>
+
+                        <input
+                          type="datetime-local"
+                          value={testLive?.contestStart || ''}
+                          onChange={(e) => {
+                            setTestLive((prev) => {
+                              return {
+                                ...prev,
+                                contestStart: e.target.value,
+                              };
+                            });
+                          }}
+                          className="my-4 max-w-md rounded-xl p-4"
+                        />
+                      </div>
+
+                      <div className="my-4 flex w-full flex-col px-6">
+                        <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
+                          <h2 className="flex items-center space-x-3">
+                            <BiTime className="h-8 w-8" />{' '}
+                            <span>Contest End Time</span>
+                          </h2>
+                        </div>
+
+                        <input
+                          type="datetime-local"
+                          value={testLive?.contestEnd || ''}
+                          onChange={(e) => {
+                            setTestLive((prev) => {
+                              return {
+                                ...prev,
+                                contestEnd: e.target.value,
+                              };
+                            });
+                          }}
+                          className="my-4 max-w-md rounded-xl p-4"
+                        />
+                      </div>
+                    </>
+                  )}
 
                   <div className="my-4 flex w-full flex-col px-6">
                     <div className="flex flex-col">

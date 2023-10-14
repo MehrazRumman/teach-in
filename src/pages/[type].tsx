@@ -1,3 +1,4 @@
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -6,10 +7,16 @@ import { BiCopy } from 'react-icons/bi';
 import { BsQuestionLg } from 'react-icons/bs';
 import { FiBookOpen, FiFilter } from 'react-icons/fi';
 import { GiTeacher } from 'react-icons/gi';
-import { MdCastForEducation } from 'react-icons/md';
+import { GrContact } from 'react-icons/gr';
+import {
+  MdCastForEducation,
+  MdContactSupport,
+  MdContentPasteGo,
+} from 'react-icons/md';
 import { RiArticleLine } from 'react-icons/ri';
 import FilterArticle from '~/components/features/browse/FilterArticle';
 import FilterBook from '~/components/features/browse/FilterBook';
+import FilterContest from '~/components/features/browse/FilterContest';
 import FilterPanelExam from '~/components/features/browse/FilterPanelExam';
 import FilterResult from '~/components/features/browse/FilterResult';
 import FilterExam from '~/components/features/browse/FilterResultExam';
@@ -110,6 +117,25 @@ const BrowsePageExam: NextPage = () => {
                 <BsQuestionLg /> Exam
               </div>
             </label>
+
+            <label
+              className={`flex-1 cursor-pointer  rounded-md py-2 text-center text-2xl  text-gray-950 md:rounded-2xl md:py-4 ${
+                type === 'contests' ? 'bg-purple-700 text-white' : ''
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={type === 'contests'}
+                onChange={() => {
+                  router.push('/contests');
+                }}
+                className="hidden"
+              />
+              <div className="flex flex-row items-center justify-center dark:text-white ">
+                <MdContactSupport /> Contest
+              </div>
+            </label>
+
             <label
               className={`flex-1 cursor-pointer  rounded-md py-2 text-center text-2xl  text-gray-950 md:rounded-2xl md:py-4 ${
                 type === 'articles' ? 'bg-purple-700 text-white shadow-lg' : ''
@@ -171,6 +197,7 @@ const BrowsePageExam: NextPage = () => {
         {type == 'articles' && <FilterArticle />}
         {type == 'books' && <FilterBook />}
         {type == 'tutors' && <FilterTutor />}
+        {type == 'contests' && <FilterContest />}
       </div>
     </>
   );

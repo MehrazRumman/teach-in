@@ -52,6 +52,7 @@ export const PATHS = {
   EXAM: 'exam',
   MERIT: 'merit',
   BROWSE_EXAM: 'exams',
+  BROWSE_CONTEST: 'contests',
   BROWSE_BOOK: 'books',
   BROWSE_ARTICLE: 'articles',
   BROWSE_TUTOR: 'tutors',
@@ -127,8 +128,9 @@ export const playerOptions = {
 export const categories = [
   { title: 'Course', url: `/${PATHS.BROWSE}` },
   { title: 'Exams', url: `/${PATHS.BROWSE_EXAM}` },
+  { title: 'Contest', url: `/${PATHS.BROWSE_CONTEST}` },
   { title: 'Notes', url: `/${PATHS.BROWSE_BOOK}` },
-  { title: 'Tutors', url: `/${PATHS.BROWSE_ARTICLE}` },
+  { title: 'Tutors', url: `/${PATHS.BROWSE_TUTOR}` },
   { title: 'Article', url: `/${PATHS.BROWSE_ARTICLE}` },
 ];
 
