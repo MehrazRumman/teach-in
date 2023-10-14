@@ -672,10 +672,7 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
                         </div>
                       </div>
                     ) : (
-                      <div className="mt-4">
-                        To start the exam, Just Click on <b>Start Exam</b>{' '}
-                        button
-                      </div>
+                      <div></div>
                     )}
                   </div>
                 </div>
@@ -1012,7 +1009,11 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
                   <FaPlayCircle className="mr-2" />
                   {/* Assuming you're using Font Awesome for icons */}
                   <strong>
-                    {examGivenEarlier ? <>Re-Exam</> : <>Start Exam</>}
+                    {examGivenEarlier ? (
+                      <>Re-Exam</>
+                    ) : (
+                      <>{test?.contestMode ? 'Start Contest' : 'Start Exam'}</>
+                    )}
                   </strong>
                 </button>
               </div>
