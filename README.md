@@ -1,5 +1,5 @@
 # Teach-In (Upgrade Yourself)
-![alt text](https://github.com/JHM69/teach-in/blob/main/logo.png  width="200" height="150" )
+<center><img src = "https://github.com/JHM69/teach-in/blob/main/logo.png"  width="150" height="150"  ></center>
 
 The proposed solution to create an education platform where students can enroll in courses, join seminars and bootcamps online, and ask mentors to clear doubts has the potential to be logical, practical, and applicable. Here's an analysis of each aspect:
 
