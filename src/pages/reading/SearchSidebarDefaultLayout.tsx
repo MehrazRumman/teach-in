@@ -248,7 +248,7 @@ const SearchSidebarDefaultLayout: React.FC<SearchSidebarDefaultLayoutProps> = ({
               height={8}
               className="h-8 w-8 opacity-20 md:h-12 md:w-12"
             />
-            <span className="px-2 text-2xl md:text-4xl">mp-bian.com</span>
+            <span className="px-2 text-2xl md:text-4xl">teach-in.com</span>
           </div>
         </div>
       </div>

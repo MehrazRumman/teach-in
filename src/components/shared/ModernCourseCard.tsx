@@ -26,13 +26,14 @@ function ModernCourseCard({
   return (
     <Link href={path} className="full-size">
       <div className="aspect-h-6 aspect-w-5 relative mt-16 rounded-2xl bg-white shadow-xl dark:bg-dark-background">
-        <div className="absolute -top-[10%] left-0 mx-auto max-h-[30%] max-w-[85%]">
-          <figure className="relative overflow-hidden rounded-2xl pb-[56.25%]">
+        <div className="  left-0 mx-auto">
+          <figure className=" rounded-2xl pb-[56.25%]">
             <Image
               ref={imageRef}
               className=""
               src={course.thumbnail || ''}
-              fill
+              height={120}
+              width={200}
               alt="course-thumbnail"
             />
           </figure>
@@ -66,7 +67,7 @@ function ModernCourseCard({
             </span>
           </div>
 
-          <h1 className="mt-2 text-xl font-bold line-clamp-2 md:text-2xl md:line-clamp-1 lg:line-clamp-2">
+          <h1 className="mt-2 line-clamp-2 text-xl font-bold md:line-clamp-1 md:text-2xl lg:line-clamp-2">
             {course.name}
           </h1>
 

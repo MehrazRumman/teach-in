@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
     await sendSMS(
       number,
-      `Dear ${name}, Your Order state changed to - ${newStatus}. Message for You: ${updateText}. Track your order: https://mp-bian.com/track_order/${orderId} `,
+      `Dear ${name}, Your Order state changed to - ${newStatus}. Message for You: ${updateText}. Track your order: https://teach-in.com/track_order/${orderId} `,
     );
 
     res.json(updatedOrder);

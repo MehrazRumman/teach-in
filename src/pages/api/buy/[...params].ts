@@ -222,17 +222,17 @@ const payment = async (req: NextApiRequest, res: NextApiResponse) => {
               if (type === 'hard_copy') {
                 await sendSMS(
                   number,
-                  `Your payment ${amount} tk has been successfully recieved. We will ship your book as soon as possible. Track your order: https://mp-bian.com/track_order/${bookOrderId} `,
+                  `Your payment ${amount} tk has been successfully recieved. We will ship your book as soon as possible. Track your order: https://teach-in.com/track_order/${bookOrderId} `,
                 );
 
                 await sendSMS(
                   '01320820854',
-                  `New Order: https://mp-bian.com/track_order/${bookOrderId}. All Orders: https://mp-bian.com/book_orders}  `,
+                  `New Order: https://teach-in.com/track_order/${bookOrderId}. All Orders: https://teach-in.com/book_orders}  `,
                 );
               } else {
                 await sendSMS(
                   number,
-                  `Your payment ${amount} tk has been successfully recieved. Read your book online at: https://mp-bian.com/reading/${bookId} `,
+                  `Your payment ${amount} tk has been successfully recieved. Read your book online at: https://teach-in.com/reading/${bookId} `,
                 );
               }
 

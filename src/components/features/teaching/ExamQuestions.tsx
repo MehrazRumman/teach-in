@@ -324,7 +324,7 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
   useEffect(() => {
     if (test?.results?.length === 1 && !givingReExam) {
       setExamGivenEarlier(true);
-      setResult(test?.results[0] as Result);
+      setResult((test?.results[0] as Result) || {});
       setSelectedOptionIndexes(test?.results[0]?.selectedOptionIndexes || []);
       showResult();
     }
@@ -339,33 +339,6 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
 
     // Replace "yourActualPassword" with the actual password to check against
     if (password === '69') {
-      toast.loading('Loading Questions...');
-
-      const storedValue = localStorage.getItem(`timer_${test?.id}`);
-
-      if (storedValue) {
-        setRemainingTime(
-          (parseInt(storedValue, 10) ^ xorKey) -
-            Number(questionLength * 0.1) * markPerQuestion * 60,
-        );
-      } else {
-        setRemainingTime(questionLength * markPerQuestion * 60);
-      }
-      const encryptedArray = localStorage.getItem(`result_${test?.id}`);
-      if (encryptedArray !== null) {
-        // Decrypt the stored array using AES decryption
-        const bytes = CryptoJS.AES.decrypt(encryptedArray, secretKey);
-        const decryptedArray = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-        setSelectedOptionIndexes(decryptedArray);
-      } else {
-        setSelectedOptionIndexes([]);
-      }
-
-      scrollToComponent();
-      setStartPageExam(true);
-      setIsModalOpen(false);
-
-      toast.dismiss();
     } else {
       toast.error("Passcode doesn't matched");
     }
@@ -944,9 +917,50 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
                       if (examGivenEarlier) {
                         startReExam();
                       } else {
-                        setIsModalOpen(true);
-                        // scrollToComponentStart();
-                        // setStartPageExam(true);
+                        // setIsModalOpen(true);
+                        // // scrollToComponentStart();
+                        // // setStartPageExam(true);
+
+                        toast.loading('Loading Questions...');
+
+                        const storedValue = localStorage.getItem(
+                          `timer_${test?.id}`,
+                        );
+
+                        if (storedValue) {
+                          setRemainingTime(
+                            (parseInt(storedValue, 10) ^ xorKey) -
+                              Number(questionLength * 0.1) *
+                                markPerQuestion *
+                                60,
+                          );
+                        } else {
+                          setRemainingTime(
+                            questionLength * markPerQuestion * 60,
+                          );
+                        }
+                        const encryptedArray = localStorage.getItem(
+                          `result_${test?.id}`,
+                        );
+                        if (encryptedArray !== null) {
+                          // Decrypt the stored array using AES decryption
+                          const bytes = CryptoJS.AES.decrypt(
+                            encryptedArray,
+                            secretKey,
+                          );
+                          const decryptedArray = JSON.parse(
+                            bytes.toString(CryptoJS.enc.Utf8),
+                          );
+                          setSelectedOptionIndexes(decryptedArray);
+                        } else {
+                          setSelectedOptionIndexes([]);
+                        }
+
+                        scrollToComponent();
+                        setStartPageExam(true);
+                        setIsModalOpen(false);
+
+                        toast.dismiss();
                       }
                     }
                   }}

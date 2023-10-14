@@ -219,7 +219,7 @@ const payment = async (req: NextApiRequest, res: NextApiResponse) => {
               if (number !== 'number') {
                 await sendSMS(
                   number,
-                  `Hi ${name}, Course enrolled: '${c_name}'. Your ID: ${code} FB Group: ${fb} Course Link: https://mp-bian.com/learning/${slug}/${slug}_1_1`,
+                  `Hi ${name}, Course enrolled: '${c_name}'. Your ID: ${code} FB Group: ${fb} Course Link: https://teach-in.com/learning/${slug}/${slug}_1_1`,
                 );
               }
 
@@ -234,7 +234,7 @@ const payment = async (req: NextApiRequest, res: NextApiResponse) => {
                       course_name: c_name,
                       id: String(code),
                       fb: fb,
-                      link: `https://mp-bian.com/learning/${slug}/${slug}_1_1`,
+                      link: `https://teach-in.com/learning/${slug}/${slug}_1_1`,
                     }),
                   ),
                 });

@@ -32,10 +32,10 @@ const LearningPage: NextPage = () => {
     userId: session?.user?.id as string,
   });
 
-  // check user cheat on lecture path or not enroll yet
-  if (!book || !book?.name || !book?.bookPrice) {
-    return <BlankReadingPage />;
-  }
+  // // check user cheat on lecture path or not enroll yet
+  // if (!book || !book?.name || !book?.bookPrice) {
+  //   return <BlankReadingPage />;
+  // }
 
   return (
     <div>

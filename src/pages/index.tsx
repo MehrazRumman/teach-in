@@ -46,7 +46,7 @@ const Home: NextPage<HomePageProps> = ({
       <Head
         title={`Teach-In`}
         image={
-          'https://mp-bian.com/api/download/1696681328025_thumb%20(3)-min%20(1).jpg'
+          'https://teach-in.com/api/download/1696681328025_thumb%20(3)-min%20(1).jpg'
         }
         description={'Course, Tutors, Model Test, Articles in Teach-In '}
       />

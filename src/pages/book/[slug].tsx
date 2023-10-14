@@ -123,7 +123,6 @@ const BookPage: NextPage = ({
         if (review.rating) {
           return point + review.rating;
         }
-
         return point + 0;
       }, 0) / (book.reviews.length > 0 ? book.reviews.length : 1),
     );

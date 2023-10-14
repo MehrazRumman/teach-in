@@ -90,7 +90,7 @@ export default async function handler(
 
         sendSMS(
           number,
-          `Hi ${name}! You have been enrolled in the course ${course_name} successfully by an Admin. Visit https://mp-bian.com and log in with this number to get access`,
+          `Hi ${name}! You have been enrolled in the course ${course_name} successfully by an Admin. Visit https://teach-in.com and log in with this number to get access`,
         );
 
         return res.status(200).json({ message: 'User enrolled successfully.' });
@@ -145,7 +145,7 @@ export default async function handler(
 
         sendSMS(
           number,
-          `Hi ${name}! Your course enrollment request has been approved for the course ${course_name}. Visit https://mp-bian.com and log in with this number to get access`,
+          `Hi ${name}! Your course enrollment request has been approved for the course ${course_name}. Visit https://teach-in.com and log in with this number to get access`,
         );
 
         return res.status(200).json({ message: 'ApplyRequest approved.' });
@@ -178,7 +178,7 @@ export default async function handler(
 
         sendSMS(
           number,
-          `Hi ${name}! Your course enrollment request has been rejected for the course ${course_name}. Visit https://mp-bian.com and retry.`,
+          `Hi ${name}! Your course enrollment request has been rejected for the course ${course_name}. Visit https://teach-in.com and retry.`,
         );
 
         return res.status(200).json({ message: 'ApplyRequest Rejected.' });

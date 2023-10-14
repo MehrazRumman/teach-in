@@ -156,7 +156,7 @@ export default function BookHeader({
                   height={8}
                   className="h-8 w-8 opacity-20 md:h-12 md:w-12"
                 />
-                <span className="px-2 text-2xl md:text-4xl">mp-bian.com</span>
+                <span className="px-2 text-2xl md:text-4xl">teach-in.com</span>
               </div>
               <div className="px-2 text-2xl md:text-4xl">Preview</div>
             </div>
@@ -193,7 +193,7 @@ export default function BookHeader({
               height={400}
             />
 
-            <div className="mx-12 flex w-full flex-row justify-between md:w-4/6">
+            <div className="mx-12 flex w-full flex-row justify-center md:w-4/6">
               {book?.fileLink && (
                 <div>
                   <button
@@ -213,7 +213,7 @@ export default function BookHeader({
                 <Link href={'/reading/' + book.id}>
                   <div className="mx-2 my-5 flex items-center space-x-2 rounded-md bg-green-100 p-2 px-3 py-2 font-bold text-green-700 shadow-sm transition duration-300 hover:bg-green-300 dark:bg-green-700 dark:text-green-100 ">
                     <FaBookOpen />
-                    <span>ফ্রীতে অনলাইনে পড়ুন</span>
+                    <span>Read online Free</span>
                   </div>
                 </Link>
               )}
@@ -229,12 +229,10 @@ export default function BookHeader({
               <div className="h-[5rem] w-full animate-pulse rounded-2xl bg-gray-300 dark:bg-gray-700"></div>
             )}
 
-            {book ? (
+            {book && book?.bookPrice > 0 && (
               <h1 className="dark-bg-orange-900 w-fit rounded bg-orange-100 px-4 py-3 pt-4 text-4xl font-bold text-orange-700 dark:bg-gray-950 dark:text-orange-200 lg:text-3xl">
                 {book.bookPrice} ৳{' '}
               </h1>
-            ) : (
-              <div className="h-[5rem] w-full animate-pulse rounded-2xl bg-gray-300 dark:bg-gray-700"></div>
             )}
 
             {book ? (
@@ -254,7 +252,7 @@ export default function BookHeader({
                     <Then>
                       <Loading />
                     </Then>
-                    <Else>বইটি কিনুন</Else>
+                    <Else>Buy</Else>
                   </If>
                 </button>
               )}
