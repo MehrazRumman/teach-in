@@ -96,7 +96,7 @@ export default function Cart() {
   const handleOpenModal = () => {
     if (cartCtx?.userWithCart?.cart[0]?.bookId) {
       if (name === null || name === '') {
-        return toast.error('আপনার নামটি সঠিকভাবে লিখুন');
+        return toast.error('Enter your name correctly');
       }
 
       const result = checkPhoneNumber(number);
@@ -111,14 +111,16 @@ export default function Cart() {
       }
 
       if (address === null || address === '') {
-        return toast.error('ঠিকানাটি সঠিকভাবে লিখুন');
+        return toast.error('Enter the address correctly');
       }
       if (
         selectedDistrict === '' ||
         selectedDivision === '' ||
         selectedUpazila === ''
       ) {
-        return toast.error('আপনার বিভাগ, জেলা এবং উপজেলা সঠিকভাবে লিখুন');
+        return toast.error(
+          'Enter your Division, District and Upazila correctly',
+        );
       }
     } else {
       const result = checkPhoneNumber(number);
@@ -195,7 +197,7 @@ export default function Cart() {
         await cartCtx?.handleCheckout(courseData);
       }
     } else {
-      toast.error('কেনার জন্য তথ্যগুলো সঠিকভাবে পূরণ করুন');
+      toast.error('Fill the information correctly to purchase');
     }
   };
 
@@ -210,7 +212,7 @@ export default function Cart() {
         <Modal onClose={handleCloseModal} title={'Are you agree?'}>
           <div className="p-4 text-center">
             <h2 className="mb-4 text-2xl text-black dark:text-white md:text-xl lg:text-2xl">
-              দয়া করে এগিয়ে যাওয়ার আগে নীচের শর্তাবলী গুলো পড়ে নিন।
+              Please read the terms and conditions below before proceeding.
               <div className="my-3">
                 Click on the{' '}
                 <span className="text-semibold bg: rounded-md bg-purple-100 px-2 dark:bg-purple-900">
@@ -260,7 +262,7 @@ export default function Cart() {
                 className="rounded-lg bg-purple-500 px-4 py-2 font-semibold text-white hover:bg-violet-900 md:px-6 md:py-3 lg:px-8 lg:py-4"
                 onClick={handleCheckout}
               >
-                কিনুন
+                Buy
               </button>
             </div>
           </div>
@@ -276,12 +278,12 @@ export default function Cart() {
 
         <div className="flex items-center space-x-4">
           <ShoppingCartIcon className="h-10 w-10" />
-          <h1 className="text-4xl font-semibold capitalize">কার্ট</h1>
+          <h1 className="text-4xl font-semibold capitalize">Cart</h1>
           <h2 className="text-2xl font-semibold">
             {cartCtx?.userWithCart && cartCtx?.userWithCart.cart
               ? cartCtx?.userWithCart.cart.length
               : 0}{' '}
-            কোর্স অথবা বই
+            course or book
           </h2>
         </div>
 
@@ -341,13 +343,13 @@ export default function Cart() {
                 <>
                   <div className=" mb-12 w-full  space-x-2 space-y-4 rounded-xl bg-white p-6 dark:bg-slate-800 md:mx-3 lg:mt-10">
                     <div className="flex flex-row items-center justify-center">
-                      বইটি কিনতে হলে নীচের তথ্যগুলো সঠিকভাবে পূরণ করুন
+                      To buy the book fill the below information correctly
                     </div>
 
                     <div className="flex items-center space-x-2">
                       <GiRead size={24} className="text-gray-500" />
                       <label htmlFor="payment" className=" font-semibold">
-                        কিভাবে কিনতে চান?
+                        How to buy?
                       </label>
                     </div>
                     <div className="my-4 flex items-center gap-3 space-x-4 rounded-xl border px-3 outline-1 ">
@@ -379,7 +381,8 @@ export default function Cart() {
                           }`}
                         >
                           <FaBook className="mr-3" />
-                          হার্ড কপি বা মূল বই [আপনার ঠিকানায় বইটি পাঠানো হবে]
+                          Hard copy or original book [book will be sent to your
+                          address]
                         </span>
                       </label>
 
@@ -412,7 +415,7 @@ export default function Cart() {
                             }`}
                           >
                             <FaFilePdf className="mr-3" />
-                            PDF কপি [বইটি আমাদের ওয়েবসাইটেই পড়তে পারবেন]
+                            PDF copy [Book can be read on our website]
                           </span>
                         </label>
                       )}
@@ -423,7 +426,7 @@ export default function Cart() {
                             className={`mx-4 my-3 ml-2 flex flex-row  items-center rounded-xl border-2 border-solid border-purple-800 bg-purple-500  px-6 py-3 text-lg font-bold text-white dark:bg-purple-950 `}
                           >
                             <FaBookOpen className="mr-3" />
-                            বইটির অনলাইনে ফ্রীতে পড়ুন
+                            Read the book online for free
                           </span>
                         </Link>
                       )}
@@ -432,7 +435,7 @@ export default function Cart() {
                     <div className="flex items-center space-x-2">
                       <FaPhoneAlt size={24} className="text-gray-500" />
                       <label htmlFor="phone" className="font-semibold">
-                        আপনার মোবাইল নম্বরঃ
+                        Your mobile number:
                       </label>
                     </div>
                     <input
@@ -442,7 +445,7 @@ export default function Cart() {
                       onChange={(e) => setNumber(e.target.value)}
                       name="phone"
                       className="w-full rounded-xl border p-2 focus:border-blue-500 focus:outline-none"
-                      placeholder="আপনার নাম্বারটি সঠিকভাবে লিখুন"
+                      placeholder="Enter your number correctly"
                     />
 
                     {buyMethod === 'hard_copy' && (
@@ -450,7 +453,7 @@ export default function Cart() {
                         <div className="flex items-center space-x-2">
                           <FaUserAlt size={24} className="text-gray-500" />
                           <label htmlFor="name" className="font-semibold">
-                            আপনার নামঃ
+                            Your Name:
                           </label>
                         </div>
                         <input
@@ -460,11 +463,11 @@ export default function Cart() {
                           id="name"
                           name="name"
                           className="w-full rounded-xl border p-2 focus:border-blue-500 focus:outline-none"
-                          placeholder="আপনার নামটি সঠিকভাবে লিখুন"
+                          placeholder="Enter your name correctly"
                         />
                         <div className="flex items-center space-x-2">
                           <label htmlFor="phone" className="font-semibold">
-                            বিভাগ:
+                            Category:
                           </label>
                         </div>
                         <select
@@ -474,7 +477,7 @@ export default function Cart() {
                           value={selectedDivision}
                           onChange={(e) => setSelectedDivision(e.target.value)}
                         >
-                          <option value="">বিভাগ নির্বাচন করুন</option>
+                          <option value="">Select category</option>
                           {divisions.map((division) => (
                             <option key={division.id} value={division.id}>
                               {division.name}
@@ -483,7 +486,7 @@ export default function Cart() {
                         </select>
                         <div className="flex items-center space-x-2">
                           <label htmlFor="phone" className="font-semibold">
-                            জেলা:
+                            District:
                           </label>
                         </div>
                         <select
@@ -494,7 +497,7 @@ export default function Cart() {
                           onChange={(e) => setSelectedDistrict(e.target.value)}
                           disabled={!selectedDivision}
                         >
-                          <option value="">জেলা সিলেক্ট করুন </option>
+                          <option value="">Select district</option>
                           {districts
                             .filter(
                               (district) =>
@@ -508,7 +511,7 @@ export default function Cart() {
                         </select>
                         <div className="flex items-center space-x-2">
                           <label htmlFor="phone" className="font-semibold">
-                            উপজেলা:
+                            Upazila:
                           </label>
                         </div>
                         <select
@@ -519,7 +522,7 @@ export default function Cart() {
                           onChange={(e) => setSelectedUpazila(e.target.value)}
                           disabled={!selectedDistrict}
                         >
-                          <option value="">উপজেলা সিলেক্ট করুন</option>
+                          <option value="">Select upazila</option>
                           {upazilas
                             .filter(
                               (upazila) =>
@@ -534,7 +537,7 @@ export default function Cart() {
                         <div className="flex items-center space-x-2">
                           <FaAddressBook size={24} className="text-gray-500" />
                           <label htmlFor="address" className="font-semibold">
-                            পূর্ণাঙ্গ ঠিকানাঃ
+                            Full address:
                           </label>
                         </div>
                         <textarea
@@ -544,13 +547,13 @@ export default function Cart() {
                           onChange={(e) => setAddress(e.target.value)}
                           className="w-full rounded-xl border p-2 focus:border-blue-500 focus:outline-none"
                           style={{ height: '100px' }} // Adjust the height value as needed
-                          placeholder="(বাসার নাম, রোড নং, বাড়ি নং,
-                            বিল্ডিং নং, এপার্টমেন্ট নং, ইত্যাদি)"
+                          placeholder="(House Name, Road No., House No.,
+                            Building No., Apartment No., etc.)"
                         />
                         <div className="flex items-center space-x-2">
                           <FaComment size={24} className="text-gray-500" />
                           <label htmlFor="address" className="font-semibold">
-                            কোন মতামত থাকলে লিখুনঃ (অপশনাল)
+                            If any comments write: (Optional)
                           </label>
                         </div>
                         <textarea
@@ -560,7 +563,7 @@ export default function Cart() {
                           onChange={(e) => setComment(e.target.value)}
                           className="w-full rounded-xl border p-2 focus:border-blue-500 focus:outline-none"
                           style={{ height: '100px' }} // Adjust the height value as needed
-                          placeholder="আপনার মতামত থেকে থাকলে লিখুন"
+                          placeholder="Write your opinion if you have any"
                         />
                       </>
                     )}
@@ -573,14 +576,14 @@ export default function Cart() {
                 <>
                   <div className=" w-full space-y-4 rounded-xl bg-white p-6  dark:bg-slate-800 lg:mt-10">
                     <div className="my-4 mb-12 flex flex-row items-center justify-center">
-                      কোর্সটি কিনতে আপনার মোবাইল নাম্বার ও ফেসবুক একাউন্টের
-                      নামটি সঠিকভাবে পূরণ করুন
+                      Your mobile number and Facebook account to buy the course
+                      Fill the name correctly
                     </div>
 
                     <div className="flex items-center space-x-2">
                       <BiCategory size={24} className="text-gray-500" />
                       <label htmlFor="country" className=" font-semibold">
-                        আপনি কোন দেশ থেকে কিনতে চান?
+                        Which country do you want to buy from?
                       </label>
                     </div>
                     <div className="my-4 flex items-center gap-3 space-x-4 rounded-xl border px-3 outline-1 ">
@@ -612,7 +615,7 @@ export default function Cart() {
                           }`}
                         >
                           <HiCurrencyBangladeshi className="mr-3" />
-                          বংলাদেশ
+                          Bangladesh
                         </span>
                       </label>
 
@@ -644,17 +647,18 @@ export default function Cart() {
                           }`}
                         >
                           <GiIndiaGate className="mr-3" />
-                          ভারত
+                          India
                         </span>
                       </label>
                     </div>
 
                     {country === 'India' ? (
                       <div className="flex items-center justify-center">
-                        <BsGoogle className="mr-4 h-10 w-10" /> ভারত থেকে গুগল
-                        একাউন্ট ব্যবহার করে কোর্সটি কিনতে আপনার ইন্ডিয়ান
-                        নাম্বারটি ও ফেসবুক নাম ইনপুট দিয়ে &ldquo;কিনুন&rdquo;
-                        বাটনে ক্লিক করুন <br />
+                        <BsGoogle className="mr-4 h-10 w-10" />
+                        Google from India Use your Indian account to purchase
+                        the course “Buy” by inputting the number and Facebook
+                        name. Click the button
+                        <br />
                       </div>
                     ) : (
                       <></>
@@ -663,7 +667,7 @@ export default function Cart() {
                     <div className="flex items-center space-x-2">
                       <FaPhoneAlt size={24} className="text-gray-500" />
                       <label htmlFor="phone" className="font-semibold">
-                        আপনার মোবাইল নম্বরঃ
+                        Your mobile number:
                       </label>
                     </div>
                     <input
@@ -675,15 +679,15 @@ export default function Cart() {
                       className="w-full rounded-xl border p-2 focus:border-blue-500 focus:outline-none"
                       placeholder={
                         country === 'India'
-                          ? 'আপনার +91 দিয়ে আপনার ইন্ডিয়ান নম্বরটি লিখুন'
-                          : 'আপনার 11 ডিজিটের নাম্বার টি লিখুন'
+                          ? 'Enter your Indian number with your +91'
+                          : 'Enter your 11 digit number'
                       }
                     />
 
                     <div className="flex items-center space-x-2">
                       <FaFacebook size={24} className="text-gray-500" />
                       <label htmlFor="name" className="font-semibold">
-                        আপনার ফেসবুক প্রোফাইলের নামঃ
+                        Your Facebook Profile Name:
                       </label>
                     </div>
                     <input
@@ -693,14 +697,14 @@ export default function Cart() {
                       id="name"
                       name="name"
                       className="w-full rounded-xl border p-2 focus:border-blue-500 focus:outline-none"
-                      placeholder="আপনার ফেসবুকের নাম"
+                      placeholder="your facebook name"
                     />
                   </div>
                 </>
               )}
 
             <div className="flex flex-row items-center justify-between text-3xl font-bold">
-              <div>দাম</div>
+              <div>Price</div>
 
               <hr className="mx-3 h-0.5 w-full border-t border-dashed border-gray-500" />
 
@@ -718,7 +722,7 @@ export default function Cart() {
                 <>
                   {buyMethod === 'hard_copy' && (
                     <div className="flex  flex-row items-center justify-between text-3xl font-bold">
-                      <div>কুরিয়ার খরচ</div>
+                      <div>Courier cost</div>
                       <hr className="mx-3 h-0.5 w-full border-t border-dashed border-gray-500" />
 
                       <div className="text-red">
@@ -736,7 +740,7 @@ export default function Cart() {
                   )}
 
                   <div className="flex  flex-row items-center justify-between text-3xl font-bold text-red-700">
-                    <div>সর্বমোট</div>
+                    <div>Total</div>
                     <hr className="mx-3 h-0.5 w-full border-t border-dashed border-gray-500" />
 
                     <div className="text-red">
@@ -764,7 +768,7 @@ export default function Cart() {
                 disabled={cartCtx?.checkoutState === 'loading'}
                 className="absolute-center min-h-[4.4rem] w-full rounded-lg bg-purple-600 text-white md:mx-3"
               >
-                {cartCtx?.checkoutState === 'loading' ? <Loading /> : 'কিনুন'}
+                {cartCtx?.checkoutState === 'loading' ? <Loading /> : 'Buy'}
               </button>
             )}
           </div>

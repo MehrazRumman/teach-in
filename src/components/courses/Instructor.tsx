@@ -44,8 +44,8 @@ function Instructor({ instructorId }: InstructorProps) {
   }, [instructor]);
 
   return (
-    <div className="mx-4 flex w-full flex-col space-y-4 rounded-lg border-2 p-4 shadow-md md:mx-8">
-      <div className="mt-4 flex flex-col space-x-4">
+    <div className="mb-6 flex w-fit flex-col space-y-2 rounded-lg border-2 p-4 shadow-md ">
+      <div className=" flex flex-col space-x-4">
         <Link href={`/${PATHS.USER}/${instructor?.id}`}>
           <figure className="relative h-auto w-full overflow-hidden rounded-2xl  ">
             <Image
@@ -79,30 +79,6 @@ function Instructor({ instructorId }: InstructorProps) {
           </div>
         </div>
       </div>
-
-      <article
-        ref={parent}
-        className={`prose-xl prose ${
-          disclosure.open && isOverflow ? 'h-auto' : 'h-[10rem]'
-        } overflow-hidden overflow-x-hidden text-gray-600 prose-img:max-w-[60vw] prose-img:rounded-2xl dark:text-white/80`}
-        dangerouslySetInnerHTML={{
-          __html: instructor?.bio?.bioDescription || '',
-        }}
-      ></article>
-
-      {isOverflow && (
-        <Disclosure
-          className="absolute-center flex w-full flex-col"
-          state={disclosure}
-        >
-          <span>{disclosure.open ? 'See more' : 'Collapse'}</span>
-          <ChevronUpIcon
-            className={`smooth-effect h-6 w-6 transform ${
-              disclosure.open ? 'rotate-180' : ''
-            }`}
-          />
-        </Disclosure>
-      )}
     </div>
   );
 }
