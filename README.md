@@ -52,6 +52,10 @@ The proposed solution to create an education platform where students can enroll 
 # ER Diagram 
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/er.svg"></p>
 
+# System Design
+
+<p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/systemDiagram.png"   ></p>
+
 
 # User Interaction:
 * 1. Weekly/Monthly Contest on various topics.
