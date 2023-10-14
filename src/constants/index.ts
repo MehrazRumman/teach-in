@@ -54,6 +54,7 @@ export const PATHS = {
   BROWSE_EXAM: 'exams',
   BROWSE_BOOK: 'books',
   BROWSE_ARTICLE: 'articles',
+  BROWSE_TUTOR: 'tutors',
 };
 
 export const QUERY_FILTERS = {
@@ -127,6 +128,7 @@ export const categories = [
   { title: 'Course', url: `/${PATHS.BROWSE}` },
   { title: 'Exams', url: `/${PATHS.BROWSE_EXAM}` },
   { title: 'Notes', url: `/${PATHS.BROWSE_BOOK}` },
+  { title: 'Tutors', url: `/${PATHS.BROWSE_ARTICLE}` },
   { title: 'Article', url: `/${PATHS.BROWSE_ARTICLE}` },
 ];
 

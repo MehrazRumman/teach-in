@@ -63,7 +63,7 @@ export default function Sidebar() {
               <Dialog.Panel className="flex h-screen min-h-screen w-[230px] transform flex-col space-y-4 overflow-y-scroll bg-light-background px-2 py-10 shadow-xl transition-all dark:bg-dark-background">
                 <Logo />
 
-                <h2 className="px-2 text-left text-2xl">Subject</h2>
+                <h2 className="px-2 text-left text-2xl">Categories</h2>
 
                 {categories_detail.map((category) => {
                   return (

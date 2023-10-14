@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 import { BiCopy } from 'react-icons/bi';
 import { BsQuestionLg } from 'react-icons/bs';
 import { FiBookOpen, FiFilter } from 'react-icons/fi';
+import { GiTeacher } from 'react-icons/gi';
 import { MdCastForEducation } from 'react-icons/md';
 import { RiArticleLine } from 'react-icons/ri';
 import FilterArticle from '~/components/features/browse/FilterArticle';
@@ -12,6 +13,7 @@ import FilterBook from '~/components/features/browse/FilterBook';
 import FilterPanelExam from '~/components/features/browse/FilterPanelExam';
 import FilterResult from '~/components/features/browse/FilterResult';
 import FilterExam from '~/components/features/browse/FilterResultExam';
+import FilterTutor from '~/components/features/browse/FilterTutor';
 import Head from '~/components/shared/Head';
 import Search from '~/components/shared/Search';
 
@@ -125,6 +127,25 @@ const BrowsePageExam: NextPage = () => {
                 <RiArticleLine /> Article
               </div>
             </label>
+
+            <label
+              className={`flex-1 cursor-pointer  rounded-md py-2 text-center text-2xl  text-gray-950 md:rounded-2xl md:py-4 ${
+                type === 'tutors' ? 'bg-purple-700 text-white' : ''
+              }`}
+            >
+              <input
+                type="checkbox"
+                checked={type === 'tutors'}
+                onChange={() => {
+                  router.push('/tutors');
+                }}
+                className="hidden"
+              />
+              <div className="flex flex-row items-center justify-center dark:text-white">
+                <GiTeacher /> Tutor
+              </div>
+            </label>
+
             <label
               className={`flex-1 cursor-pointer  rounded-md py-2 text-center text-2xl  text-gray-950 md:rounded-2xl md:py-4 ${
                 type === 'books' ? 'bg-purple-700 text-white' : ''
@@ -149,6 +170,7 @@ const BrowsePageExam: NextPage = () => {
         {type == 'exams' && <FilterExam />}
         {type == 'articles' && <FilterArticle />}
         {type == 'books' && <FilterBook />}
+        {type == 'tutors' && <FilterTutor />}
       </div>
     </>
   );

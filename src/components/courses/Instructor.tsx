@@ -44,72 +44,65 @@ function Instructor({ instructorId }: InstructorProps) {
   }, [instructor]);
 
   return (
-    <div className="mx-8 flex w-full flex-col space-y-4">
-      <Link href={`/${PATHS.USER}/${instructor?.id}`}>
-        <h1 className="line-clamp-1 max-w-[70%] text-2xl text-yellow-500 md:max-w-[50%] md:text-3xl">
-          {instructor?.name}
-        </h1>
-      </Link>
-
-      <div className="mt-4 flex space-x-4">
+    <div className="mx-4 flex w-full flex-col space-y-4 rounded-lg border-2 p-4 shadow-md md:mx-8">
+      <div className="mt-4 flex flex-col space-x-4">
         <Link href={`/${PATHS.USER}/${instructor?.id}`}>
-          <figure className="relative h-[7rem] w-[7rem] overflow-hidden rounded-full md:h-[10rem] md:w-[10rem]">
+          <figure className="relative h-auto w-full overflow-hidden rounded-2xl  ">
             <Image
-              src={instructor?.image || ''}
-              fill
+              src={instructor?.image || '/images/logo.svg'}
               alt="user-avatar"
-              className="absolute inset-0 bg-center bg-no-repeat"
+              width={100}
+              height={100}
+              className=""
             />
           </figure>
         </Link>
 
-        <div className="flex cursor-pointer flex-col justify-center space-y-2 text-xl md:text-2xl">
-          <Link href={`/${PATHS.USER}/${instructor?.id}`}>
-            {/* <div className="flex items-center space-x-4">
-            <StarIcon className="h-6 w-6" />
-            <span>5.0 xếp hạng</span>
-          </div> */}
-            <div className="flex items-center space-x-4">
-              <GiAchievement className="h-6 w-6" />
-              <span>{totalReviews} Rate</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <UsersIcon className="h-6 w-6" />
-              <span>{totalStudents} Student</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <BookOpenIcon className="h-6 w-6" />
-              <span>{instructor?.Course.length} Course</span>
-            </div>
-          </Link>
+        <Link href={`/${PATHS.USER}/${instructor?.id}`}>
+          <h1 className="line-clamp-2 py-4 text-3xl font-bold  md:text-4xl">
+            {instructor?.name}
+          </h1>
+        </Link>
+
+        <div className="flex flex-col justify-center space-y-2 text-xl md:text-2xl">
+          <div className="flex flex-row items-center space-x-4">
+            <GiAchievement className="h-6 w-6" />
+            <div>{totalReviews} Reviews</div>
+          </div>
+          <div className="flex flex-row items-center space-x-4">
+            <UsersIcon className="h-6 w-6" />
+            <div>{totalStudents} Students</div>
+          </div>
+          <div className="flex flex-row items-center space-x-4">
+            <BookOpenIcon className="h-6 w-6" />
+            <div>{instructor?.Course.length} Courses</div>
+          </div>
         </div>
       </div>
 
       <article
         ref={parent}
         className={`prose-xl prose ${
-          disclosure.open && isOverflow ? 'h-fit' : 'h-[10rem]'
-        } min-h-fit min-w-full overflow-hidden overflow-x-hidden text-gray-600 lg:prose-2xl prose-img:max-w-[60vw] prose-img:rounded-2xl dark:text-white/80`}
+          disclosure.open && isOverflow ? 'h-auto' : 'h-[10rem]'
+        } overflow-hidden overflow-x-hidden text-gray-600 prose-img:max-w-[60vw] prose-img:rounded-2xl dark:text-white/80`}
         dangerouslySetInnerHTML={{
           __html: instructor?.bio?.bioDescription || '',
         }}
       ></article>
 
-      <>
-        {isOverflow && (
-          <Disclosure
-            className="absolute-center flex w-full flex-col"
-            state={disclosure}
-          >
-            <span>{disclosure.open ? 'Xem thêm' : 'Thu gọn'}</span>
-            <ChevronUpIcon
-              className={`smooth-effect h-6 w-6 ${
-                disclosure.open ? 'rotate-180 transform' : ''
-              }`}
-            />
-          </Disclosure>
-        )}
-      </>
+      {isOverflow && (
+        <Disclosure
+          className="absolute-center flex w-full flex-col"
+          state={disclosure}
+        >
+          <span>{disclosure.open ? 'See more' : 'Collapse'}</span>
+          <ChevronUpIcon
+            className={`smooth-effect h-6 w-6 transform ${
+              disclosure.open ? 'rotate-180' : ''
+            }`}
+          />
+        </Disclosure>
+      )}
     </div>
   );
 }

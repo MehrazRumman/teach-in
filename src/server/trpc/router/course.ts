@@ -667,4 +667,103 @@ export const courseRouter = router({
 
       return { courses, totalPages: Math.ceil(totalRecords / limit) };
     }),
+
+  findTutorsByFilters: publicProcedure
+    .input(
+      z.object({
+        category: z.string().optional(),
+        subCategory: z.string().optional(),
+        sortBy: z.string().optional(),
+        object: z.string().optional(),
+        price: z.string().optional(),
+        courseState: z.string().optional(),
+        limit: z.number(),
+        page: z.string(),
+      }),
+    )
+    .query(async ({ input, ctx }) => {
+      const {
+        category,
+        courseState,
+        sortBy,
+        object,
+        price,
+        limit,
+        page,
+        subCategory,
+      } = input;
+
+      // const whereConditions = new Map();
+      // const sortCondition = new Map();
+      // sortCondition.set('createdAt', 'desc');
+      // if (subCategory && subCategory !== 'All') {
+      //   whereConditions.set('subCategory', subCategory);
+      // }
+
+      // if (category && category !== 'All')
+      //   whereConditions.set('category', { name: category });
+
+      // if (courseState) {
+      //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //   //@ts-ignore
+      //   const _courseState = MAPPING_COURSE_STATE_LANGUAGE[courseState]; // -> mapping to english value
+      //   whereConditions.set('courseState', _courseState);
+      // }
+
+      // if (object) {
+      //   // -> mapping to english value:
+      //   const _object = MAPPING_LEVEL_LANGUAGE[object]; // -> mapping to english value
+
+      //   whereConditions.set('courseLevel', _object);
+      // }
+
+      // if (price) {
+      //   const stringPrice = price.toLowerCase();
+
+      //   if (stringPrice.toLowerCase() === 'Free') {
+      //     whereConditions.set('CoursePrice', 0);
+      //   }
+      //   if (stringPrice.toLowerCase() === 'Paid') {
+      //     whereConditions.set('coursePrice', { gt: 0 });
+      //   }
+      // }
+
+      // if (sortBy) {
+      //   const sort_by = sortBy.toLowerCase();
+      //   if (sort_by === 'Popular') {
+      //     sortCondition.set('createdAt', 'desc');
+      //   }
+
+      //   if (sort_by === 'rating') {
+      //     sortCondition.set('reviews', { _count: 'desc' });
+      //     whereConditions.set('reviews', { some: { id: { not: undefined } } });
+      //   }
+
+      //   if (sort_by === 'sell') {
+      //     sortCondition.set('payments', { _count: 'desc' });
+      //     whereConditions.set('payments', { some: { id: { not: undefined } } });
+      //   }
+
+      //   if (sort_by === 'registered') {
+      //     sortCondition.set('students', { _count: 'desc' });
+      //     whereConditions.set('students', { some: { id: { not: undefined } } });
+      //   }
+      // }
+
+      const [totalRecords, tutors] = await ctx.prisma.$transaction([
+        ctx.prisma.user.count({ where: { role: 'INSTRUCTOR' } }),
+        ctx.prisma.user.findMany({
+          where: { role: 'INSTRUCTOR' },
+          select: {
+            id: true,
+          },
+          take: limit,
+          skip: (Number(page) - 1) * limit,
+        }),
+      ]);
+
+      console.log({ tutors });
+
+      return { tutors, totalPages: Math.ceil(totalRecords / limit) };
+    }),
 });

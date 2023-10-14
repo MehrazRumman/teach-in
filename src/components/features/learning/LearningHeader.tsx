@@ -45,10 +45,10 @@ export default function LearningHeader({
             {courseName}
           </h1>
 
-          <h1 className="line-clamp-1 flex flex-row items-center gap-3 rounded-md bg-blue-700 px-3 py-2 font-bold text-white md:max-w-[60%]">
+          {/* <h1 className="line-clamp-1 flex flex-row items-center gap-3 rounded-md bg-blue-700 px-3 py-2 font-bold text-white md:max-w-[60%]">
             <FaFacebook />
             <Link href={facebookPage}>Group</Link>
-          </h1>
+          </h1> */}
         </div>
 
         <div className="flex items-center space-x-4">
