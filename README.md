@@ -40,7 +40,7 @@ The proposed solution to create an education platform where students can enroll 
 | Data Base             | MySql                                                             | Relational Data: MySQL is a robust relational database, which is suitable for handling structured data like user profiles, course information, and student progress tracking |                                                                                                                                       |
 
 
-# USE CASE DIAGRAM 
+# Use Case Diagram
 
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/diagram.png"   ></p>
 
