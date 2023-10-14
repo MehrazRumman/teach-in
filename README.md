@@ -1,5 +1,5 @@
 # Teach-In (Upgrade Yourself)
-![Alt Text](https://drive.google.com/file/d/1zPi7FuiX7FOJyoT5TJcoR3bRj7XWk63U/view?usp=drive_link)
+![Alt Text]([https://drive.google.com/file/d/1zPi7FuiX7FOJyoT5TJcoR3bRj7XWk63U/view?usp=drive_link](https://drive.google.com/file/d/1zPi7FuiX7FOJyoT5TJcoR3bRj7XWk63U/view?usp=drive_link))
 
 The proposed solution to create an education platform where students can enroll in courses, join seminars and bootcamps online, and ask mentors to clear doubts has the potential to be logical, practical, and applicable. Here's an analysis of each aspect:
 
