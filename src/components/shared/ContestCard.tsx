@@ -131,10 +131,6 @@ function ContestCard({ test, index }: ContestCardProps) {
                   <p className="text-base sm:text-lg lg:text-2xl">
                     {buttonContent}
                   </p>
-                  {/* Display the remaining time in the UI */}
-                  <div className="ml-2 text-lg text-red-500">
-                    {`Remaining: ${remainingTime.hours}h ${remainingTime.minutes}m ${remainingTime.seconds}s`}
-                  </div>
                 </button>
               </Link>
             )}

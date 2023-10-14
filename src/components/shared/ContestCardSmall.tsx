@@ -108,13 +108,13 @@ function ContestCardSmall({ test }: ContestCardSmallProps) {
             </div>
           </div>
         </div>
-        <div className="flex flex-row items-center p-2 lg:p-4">
+        <div className="flex flex-row items-center ">
           {test.contestStart &&
             test.contestEnd &&
             currentDateTime < test.contestEnd && (
               <Link
                 href={`/${PATHS.EXAM}/${test.slug}`}
-                className="flex h-fit flex-col overflow-hidden px-2 py-2"
+                className="flex h-fit w-full flex-col overflow-hidden px-2 py-2"
               >
                 <button
                   className={`flex flex-row items-center justify-center rounded-xl
@@ -126,13 +126,9 @@ function ContestCardSmall({ test }: ContestCardSmallProps) {
                   text-white sm:text-lg lg:text-2xl`}
                 >
                   <FaAngleDoubleRight className="mr-2" />
-                  <p className="text-base sm:text-lg lg:text-2xl">
+                  <p className="lg:text-md text-sm sm:text-sm">
                     {buttonContent}
                   </p>
-                  {/* Display the remaining time in the UI */}
-                  <div className="ml-2 text-lg text-red-500">
-                    {`Remaining: ${remainingTime.hours}h ${remainingTime.minutes}m ${remainingTime.seconds}s`}
-                  </div>
                 </button>
               </Link>
             )}
