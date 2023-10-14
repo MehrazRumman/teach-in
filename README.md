@@ -1,6 +1,10 @@
 # Teach-In (Upgrade Yourself)
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/logo.png"  width="150" height="150"  ></p>
 
+# Introduction
+Teach-In is a leading educational technology (edutech) company dedicated to transforming and revolutionizing the way people learn and access education. Established with a vision to make education more accessible, engaging, and effective, Teach-In has been at the forefront of technological innovation in the education sector.
+<br>
+
 # Solution Idea
 The proposed solution to create an education platform where students can enroll in courses, join seminars and bootcamps online, and ask mentors to clear doubts has the potential to be logical, practical, and applicable. Here's an analysis of each aspect:
 
