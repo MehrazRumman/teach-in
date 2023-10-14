@@ -21,7 +21,7 @@ The proposed solution to create an education platform where students can enroll 
 
 + ### 3. Applicable:
 
-  -**A. Market Demand:** Online education is highly applicable in today's context. It caters to a wide range of learners, from school students to working professionals looking to upskill. There is a significant market for such platforms.
+  - **A. Market Demand:** Online education is highly applicable in today's context. It caters to a wide range of learners, from school students to working professionals looking to upskill. There is a significant market for such platforms.
 
   - **B. Flexibility:** The flexibility to choose courses, seminars, or bootcamps based on individual needs and schedules is highly applicable to modern lifestyles. It allows people to pursue education alongside other commitments.
 
