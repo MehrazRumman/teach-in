@@ -50,6 +50,7 @@ The proposed solution to create an education platform where students can enroll 
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/diagram.png"   ></p>
 
 # ER Diagram 
+Please Zoom in (+)
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/er.svg"></p>
 
 # System Design
