@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function TeacherBanner() {
   return (
     <div className="my-10 flex h-[200px] min-h-[40rem] w-full flex-col items-center md:flex-row lg:h-fit">
@@ -13,16 +15,22 @@ export default function TeacherBanner() {
       <div className="space-y- flex h-full flex-1 flex-col items-center p-6 text-gray-600 dark:text-white">
         <div className="flex w-full flex-col items-center lg:w-3/4">
           <h1 className="my-2 text-center font-bold lg:text-4xl">
-            Join a Course
+            Want to be a teacher?
           </h1>
 
           <p className="my-6 w-full px-6">
-            Teach-In a platform for teachers to create and sell online courses
-            and Students to take these courses with top quality content.
+            You can create your own courses, take model test, sell your courses
+            and notes and earn money. You can also create your own community and
+            share your knowledge with others. We will cut 5% of your total
+            earning as our service charge.
           </p>
         </div>
 
-        <button className="btn-primary btn-lg btn">Start learning today</button>
+        <Link href="/teaching/test">
+          <button className="btn-primary btn-lg btn">
+            Start Teaching Today
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -13,6 +13,11 @@ import PopularBooks from '~/components/partials/PopularBooks';
 import PopularArticles from '~/components/partials/PopularArticles';
 import Search from '~/components/shared/Search';
 import MyCourses from '~/components/partials/MyCourses';
+import { useState } from 'react';
+import Modal from '~/components/partials/Modal';
+import { GiArtificialIntelligence } from 'react-icons/gi';
+import { ChatBox } from '~/components/ai/chat-box';
+import { RiArrowLeftRightFill } from 'react-icons/ri';
 
 interface HomePageProps {
   topCategories: Category[];
@@ -39,6 +44,8 @@ const Home: NextPage<HomePageProps> = ({
   totalBooks,
   totalArticles,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <Head
@@ -91,6 +98,31 @@ const Home: NextPage<HomePageProps> = ({
 
         {/* <Testimonial latestReviews={latestReviews} /> */}
       </Container>
+
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          setIsOpen(true);
+        }}
+        className="fixed bottom-8 right-8 flex flex-row items-center rounded-full bg-blue-500 px-6 py-4 text-4xl font-bold text-white shadow-2xl hover:bg-blue-800  "
+      >
+        <RiArrowLeftRightFill />
+
+        <span>ASK AI</span>
+      </button>
+
+      {isOpen && (
+        <Modal
+          title={'Chat with Best AI Expert'}
+          onClose={(e) => {
+            setIsOpen(false);
+          }}
+        >
+          <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
+            <ChatBox />
+          </div>
+        </Modal>
+      )}
     </>
   );
 };

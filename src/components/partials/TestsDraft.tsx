@@ -79,7 +79,7 @@ function TestsDraftItem({
       </th>
       <td
         onClick={handleEditTest}
-        className="max-w-[40rem] py-6 font-semibold text-purple-700 lg:min-w-min lg:py-4"
+        className="max-w-[40rem] py-6 font-semibold lg:min-w-min lg:py-4"
       >
         {name}
       </td>
@@ -87,7 +87,7 @@ function TestsDraftItem({
         onClick={handleEditTest}
         className=" content-center items-center  justify-center  "
       >
-        <span className="h-4 w-4 justify-center overflow-visible rounded-full border-2 border-purple-400 bg-purple-200 p-2 font-semibold text-purple-700   ">
+        <span className="h-4 w-4 justify-center overflow-visible rounded-full border-2 p-2 font-semibold text-purple-700   ">
           {questionCount}
         </span>
       </td>
