@@ -35,6 +35,47 @@ interface ExamQuestionsProps {
 }
 
 export default function ExamQuestions({ test }: ExamQuestionsProps) {
+  const currentDateTime = new Date();
+  const contestEndTime = test?.contestEnd;
+
+  const timeDiff = contestEndTime?.getTime() - currentDateTime?.getTime();
+  const hoursRemaining = Math.floor(timeDiff / (1000 * 60 * 60));
+  const minutesRemaining = Math.floor(
+    (timeDiff % (1000 * 60 * 60)) / (1000 * 60),
+  );
+  const secondsRemaining = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+  const [remainingTimeContest, setRemainingTimeContest] = useState({
+    hours: hoursRemaining,
+    minutes: minutesRemaining,
+    seconds: secondsRemaining,
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (remainingTime.seconds > 0) {
+        setRemainingTimeContest((prevTime) => ({
+          ...prevTime,
+          seconds: prevTime.seconds - 1,
+        }));
+      } else if (remainingTime.minutes > 0) {
+        setRemainingTimeContest((prevTime) => ({
+          hours: prevTime.hours,
+          minutes: prevTime.minutes - 1,
+          seconds: 59,
+        }));
+      } else if (remainingTime.hours > 0) {
+        setRemainingTimeContest({
+          hours: remainingTime.hours - 1,
+          minutes: 59,
+          seconds: 59,
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [remainingTime]);
+
   //get user from session
   const { data: session } = useSession();
 
@@ -263,6 +304,16 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
       }
 
       try {
+        if (test?.contestMode) {
+          if (
+            remainingTimeContest.seconds <= 0 &&
+            remainingTimeContest.minutes <= 0 &&
+            remainingTimeContest.hours <= 0
+          ) {
+            return toast.error('Contest is over, Result not submitted');
+          }
+        }
+
         if (!session?.user?.id) throw new Error();
         await axios.put('/api/test/submit', {
           ...result,
@@ -414,25 +465,29 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
               Rules:
               <div className="mx-4 my-6">
                 <li>
-                  প্রটিতি প্রশ্নের জন্য {test?.timePerQuestion} মিনিট করে সময়
-                  পাওয়া যাবে
+                  Time per question {test?.timePerQuestion} in minutes can be
+                  found
                 </li>
                 <li>
-                  শুধুমাত্র ১ম বার দেওয়া সাবমিশনটি মেরিট লিস্টে স্থান পাবে
-                </li>
-                <li>পরবর্তী সকল সাবমিশন প্যাক্টিস সাবমিশন হিসেবে গণ্য হবে</li>
-                <li>
-                  প্রতিটি প্রশ্নের জন্য {test?.markPerQuestion} নম্বর প্রদান করা
-                  হবে
+                  Only the 1st time submission will be included in the merit
+                  list
                 </li>
                 <li>
-                  প্রতিটি ভুল উত্তরের জন্য {test?.markReducePerQuestion} মার্ক
-                  করে কাটা যাবে
+                  All subsequent submissions will be treated as PACTIS
+                  submissions
+                </li>
+                <li>
+                  Assigning {test?.markPerQuestion} marks to each question will
+                  be
+                </li>
+                <li>
+                  {test?.markReducePerQuestion} marks for each wrong answer Can
+                  be cut
                 </li>
 
                 <li>
-                  প্রথমবার এক্সাম দেওয়ার সময় কোনো কারণে বের হয়ে গেলে পরবর্তীতে
-                  এক্সামটি দিতে আসলে ১০% সময় কম পাওয়া যাবে
+                  If for any reason the first exam is missed, later 10% less
+                  time will be available to give the exam
                 </li>
               </div>
             </div>
@@ -450,7 +505,24 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
                     className={`flex w-full flex-col rounded-xl bg-purple-200 p-4 text-xl dark:bg-gray-900
             `}
                   >
-                    <h2 className="text-2xl font-bold">EXAM : {test?.name}</h2>
+                    {test?.contestMode && remainingTimeContest ? (
+                      <>
+                        <h2 className="text-2xl font-bold">
+                          Running Contest : {test?.name}
+                        </h2>
+                        {/* show remaining time */}
+                        <div className="flex flex-row items-center p-2 text-2xl">
+                          <BiTime className="mr-2" /> Contest Remaining Time:{' '}
+                          {remainingTimeContest.hours}:
+                          {remainingTimeContest.minutes}:
+                          {remainingTimeContest.seconds}
+                        </div>
+                      </>
+                    ) : (
+                      <h2 className="text-2xl font-bold">
+                        EXAM : {test?.name}
+                      </h2>
+                    )}
                     <div className="flex h-full w-full flex-col justify-between">
                       {showExplanation ? (
                         // className="hidden lg:block"
@@ -614,35 +686,33 @@ export default function ExamQuestions({ test }: ExamQuestionsProps) {
                     <div className="collapse  w-full items-center justify-center rounded-xl bg-gray-200 px-2 dark:bg-slate-900">
                       <input type="checkbox" />
                       <div className="collapse-title text-xl font-medium">
-                        পরীক্ষার নিয়মাবলী জানতে{' '}
+                        To Know Exam Rules{' '}
                         <u>
-                          <b>এখানে ক্লিক করুন</b>
+                          <b>Click here</b>
                         </u>
                       </div>
                       <div className="collapse-content">
                         <li>
-                          প্রটিতি প্রশ্নের জন্য {test?.timePerQuestion} মিনিট
-                          করে সময় পাওয়া যাবে
+                          {test?.timePerQuestion} minutes per question Time will
+                          be available
+                        </li>
+                        <li>Only 1st time submission is merit list will get</li>
+                        <li>
+                          All subsequent submissions will be treated as Practice
+                          submissions
                         </li>
                         <li>
-                          শুধুমাত্র ১ম বার দেওয়া সাবমিশনটি মেরিট লিস্টে স্থান
-                          পাবে
+                          {test?.markPerQuestion} marks for each question will
+                          be provided
                         </li>
                         <li>
-                          পরবর্তী সকল সাবমিশন প্যাক্টিস সাবমিশন হিসেবে গণ্য হবে
-                        </li>
-                        <li>
-                          প্রতিটি প্রশ্নের জন্য {test?.markPerQuestion} নম্বর
-                          প্রদান করা হবে
-                        </li>
-                        <li>
-                          প্রতিটি ভুল উত্তরের জন্য {test?.markReducePerQuestion}{' '}
-                          মার্ক করে কাটা যাবে
+                          {test?.markReducePerQuestion} for each wrong answer
+                          Can be marked and cut
                         </li>
 
                         <li>
-                          প্রথমবার এক্সাম দেওয়ার সময় কোনো কারণে বের হয়ে গেলে
-                          পরবর্তীতে এক্সামটি দিতে আসলে ১০% সময় কম পাওয়া যাবে
+                          If for some reason the first exam is missed Later, 10%
+                          less time will be available to give the exam
                         </li>
                       </div>
                     </div>
