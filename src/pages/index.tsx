@@ -18,6 +18,7 @@ import Modal from '~/components/partials/Modal';
 import { GiArtificialIntelligence } from 'react-icons/gi';
 import { ChatBox } from '~/components/ai/chat-box';
 import { RiArrowLeftRightFill } from 'react-icons/ri';
+import UpcomingContests from '~/components/partials/UpcomingContests';
 
 interface HomePageProps {
   topCategories: Category[];
@@ -66,6 +67,10 @@ const Home: NextPage<HomePageProps> = ({
 
       <Container>
         <PopularCourses />
+      </Container>
+
+      <Container>
+        <UpcomingContests />
       </Container>
 
       <Container>

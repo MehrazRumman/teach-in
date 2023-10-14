@@ -76,6 +76,10 @@ const test = async (req: NextApiRequest, res: NextApiResponse) => {
         contestMode,
         contestStart: new Date(contestStart),
         contestEnd: new Date(contestEnd),
+        contestDuration: Number(
+          (new Date(contestEnd).getTime() - new Date(contestStart).getTime()) /
+            (1000 * 60),
+        ),
       };
 
       console.log(testPayload);

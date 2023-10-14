@@ -400,6 +400,8 @@ export const testRouter = router({
 
       // ignore private test:
       whereConditions.set('publishMode', 'PUBLIC');
+      whereConditions.set('contestMode', false);
+
       // ignore pending apprev:
       // whereConditions.set('verified', 'APPROVED');
 
@@ -547,6 +549,7 @@ export const testRouter = router({
             contestDuration: true,
             contestStart: true,
             contestEnd: true,
+
             category: {
               select: {
                 name: true,
