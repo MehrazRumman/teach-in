@@ -45,12 +45,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       </MainLayout>
     ));
 
-  return (
-    <SessionProvider session={session}>
-      <JotaiProvider>
-        <ThemeProvider enableSystem={false} attribute="class">
-          <CourseContextProvider>
-            <BookContextProvider>
+  return ( 
               <ArticleContextProvider>
                 <HistoryRouteContextProvider>
                   <CartContextProvider>

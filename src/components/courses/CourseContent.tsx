@@ -47,16 +47,7 @@ function CourseContent({
                 <BsDot />
               </span>
 
-              <h3>
-                Time{' '}
-                <span className="font-semibold">
-                  {Math.floor(totalVideoDuration / 3600)} Hour{' '}
-                  {Math.ceil((totalVideoDuration % 3600) / 60)} Minute
-                </span>
-              </h3>
-            </div>
-          </div>
-          <button
+              
             onClick={() => {
               setExpandAll((prevState) => !prevState);
             }}

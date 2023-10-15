@@ -10,15 +10,6 @@ export const lectureRouter = router({
         lectureId: z.string(),
         studentId: z.string(),
       }),
-    )
-    .mutation(async ({ input, ctx }) => {
-      const { userId, courseSlug, lectureId, studentId } = input;
-
-      const progress = await ctx.prisma.student.update({
-        where: { userId },
-        data: {
-          progress: {
-            upsert: {
               where: { id: `${studentId}_${courseSlug}` },
               update: {
                 Lecture: { connect: [{ id: lectureId }] },

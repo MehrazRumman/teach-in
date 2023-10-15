@@ -12,19 +12,7 @@ const BrowsePageExam: NextPage = () => {
 
   return (
     <>
-      <Head />
-
-      <div className="flex items-center justify-between px-4 py-2 md:px-0 md:py-4 lg:mx-4">
-        <h1 className="text-2xl font-bold">Browse Articles</h1>
-        <div className="flex flex-row gap-3">
-          <button
-            onClick={() => setShowFilter(!showFilter)}
-            className="flex flex-row items-center rounded-md bg-blue-500 px-4 py-2 font-bold text-white "
-          >
-            <FiFilter className="mr-2" />
-            Filter
-          </button>
-
+      <Head /> 
           <button
             onClick={(e) => {
               e.preventDefault();

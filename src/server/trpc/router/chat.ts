@@ -32,14 +32,7 @@ export const chatRouter = router({
     return sessions;
   }),
 
-  findSession: protectedProcedure
-    .input(z.object({ userIdOne: z.string(), userIdTwo: z.string() }))
-    .query(async ({ ctx, input }) => {
-      const { userIdOne, userIdTwo } = input;
-
-      const session = await ctx.prisma.chatSession.findUnique({
-        where: {
-          pOne_pTwo: {
+  findSession: 
             pOne: userIdOne,
             pTwo: userIdTwo,
           },

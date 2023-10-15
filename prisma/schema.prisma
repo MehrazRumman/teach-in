@@ -75,14 +75,7 @@ enum WITHDRAWAL_STATUS {
 }
 
 model PromoCode {
-  id        String      @id @default(cuid())
-  name      String      @unique @db.VarChar(60)
-  image     String?     @db.Text
-  code      String      @unique
-  discount  Int
-  course    Course?     @relation(fields: [courseId], references: [id])
-  book      Book?       @relation(fields: [bookId], references: [id])
-  type      ProductType @default(COURSE)
+  id        
   courseId  String?
   bookId    String?
   createdAt DateTime    @default(now())
@@ -121,21 +114,7 @@ model Course {
   reviews            Review[]
   students           Student[]
   verified           VERIFIED_STATE      @default(APPROVED)
-  published          Boolean             @default(true)
-  categoryId         String
-  data               Json?
-  notice             String?             @db.Text
-  announcements      Announcement[]
-  Wishlist           Wishlist[]
-  Cart               Cart[]
-  payments           Payment[]
-  promoCodes         PromoCode[]
-  ApplyRequest       ApplyRequest[]
-
-  @@index([userId])
-  @@index([categoryId])
-  @@fulltext([name])
-}
+  pub
 
 model Question {
   id                 String         @id
@@ -221,11 +200,7 @@ model Test {
   results               Result[]
   password              String?        @db.Text
   verified              VERIFIED_STATE @default(APPROVED)
-  createdAt             DateTime       @default(now())
-  updatedAt             DateTime       @updatedAt
-  published             Boolean        @default(false)
-  price                 Int?
-  addedBy               User           @relation(fields: [userId], references: [id])
+  createdAt             DateTime       @default(now())d], references: [id])
   userId                String
   section               String?        @db.Text
   questionLevel         QUESTION_LEVEL @default(EASY)
@@ -326,10 +301,7 @@ model Article {
   category         Category       @relation(fields: [categoryId], references: [id])
   subCategory      String?
   categoryId       String
-  briefDescription String?        @db.Text
-  verified         VERIFIED_STATE @default(APPROVED)
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
+  briefDescription String?        @db.T
   published        Boolean        @default(true)
   addedBy          User           @relation(fields: [userId], references: [id])
   userId           String
@@ -431,19 +403,6 @@ model User {
   Question      Question[]
   Discussion    Discussion[]
   notes         Note[]
-  tests         Test[]
-  books         Book[]
-  articles      Article[]
-  wishlist      Wishlist[]
-  cart          Cart[]
-  payments      Payment[]
-  revenue       Revenue[]
-  bookOrders    BookOrder[]
-  withdrawals   Withdrawal[]
-  notifications Notification[]
-  latestAccess  DateTime?
-  reminders     Reminder[]
-  chatSessions  ChatSession[]
   messages      Message[]
 
   address      String?
@@ -513,13 +472,7 @@ model Withdrawal {
   status        WITHDRAWAL_STATUS @default(PENDING)
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @updatedAt
-  transaction   Transaction       @relation(fields: [transactionId], references: [id])
-  transactionId String            @unique
-  user          User              @relation(fields: [userId], references: [id])
-  userId        String
-
-  @@index([transactionId])
-  @@index([userId])
+  transaction   Transaction 
 }
 
 model Transaction {
@@ -593,13 +546,7 @@ model BookOrder {
   address          String
   division         String
   district         String
-  upazila          String
-  userId           String
-  type             String
-  status           String
-  delivery_comment String   @default("Delivery Not Started")
-  update           String   @default("")
-  amount           Int
+  upazila 
   comment          String
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
@@ -627,10 +574,6 @@ model Cart {
 
 model Wishlist {
   id        String      @id @default(cuid())
-  course    Course?     @relation(fields: [courseId], references: [id])
-  book      Book?       @relation(fields: [bookId], references: [id])
-  article   Article?    @relation(fields: [articleId], references: [id])
-  user      User[]
   type      ProductType @default(COURSE)
   courseId  String?     @unique
   articleId String?     @unique
@@ -707,12 +650,7 @@ model Lecture {
 model Discussion {
   id                 String       @id @default(cuid())
   content            String       @db.Text
-  author             User         @relation(fields: [userId], references: [id])
-  userId             String
-  createdAt          DateTime     @default(now())
-  updatedAt          DateTime     @updatedAt
-  parentDiscussionId String?
-  parentDiscussion   Discussion?  @relation("ParentDiscussion", fields: [parentDiscussionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  author          ntDiscussion", fields: [parentDiscussionId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   replies            Discussion[] @relation("ParentDiscussion")
   lecture            Lecture      @relation(fields: [lectureId], references: [id])
   lectureId          String
@@ -726,12 +664,7 @@ model Resource {
   id             String   @id @default(cuid())
   name           String   @db.Text
   type           String   @db.Text
-  videoDuration  Float?
-  youtubeVideoId String?  @db.VarChar(60)
-  courseSlug     String   @db.Text
-  url            String   @unique @db.VarChar(500)
-  createdAt      DateTime @default(now())
-  Lecture        Lecture? @relation(fields: [lectureId], references: [id])
+  videoDuration  Float?erences: [id])
   lectureId      String?
 
   @@index([lectureId])

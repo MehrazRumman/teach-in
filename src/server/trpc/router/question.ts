@@ -70,20 +70,7 @@ export const questionRouter = router({
           z.literal('APPROVED'),
           z.literal('PENDING'),
           z.literal('REJECT'),
-        ]),
-        questions: z.array(
-          z.object({ questionId: z.string(), instructorId: z.string() }),
-        ),
-      }),
-    )
-    .mutation(async ({ input, ctx }) => {
-      const { questions, verified } = input;
-
-      // create student for self instructor if non-exist:
-      await ctx.prisma.$transaction(
-        questions.map((c) => {
-          return ctx.prisma.student.upsert({
-            where: { userId: c.instructorId },
+        ]),},
             update: { userId: c.instructorId },
             create: { userId: c.instructorId },
           });
@@ -133,16 +120,6 @@ export const questionRouter = router({
 
       return question;
     }),
-
-  publishquestion: protectedProcedure
-    .input(z.object({ published: z.boolean(), slug: z.string() }))
-    .mutation(async ({ input, ctx }) => {
-      const { slug, published } = input;
-
-      const question = await ctx.prisma.question.update({
-        where: { slug },
-        data: { published },
-      });
 
       return question;
     }),
