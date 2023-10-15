@@ -63,7 +63,7 @@ Please Zoom in (+)
 *  Quiz generation for contest using AI model 
 *  Relevant Image generation on Contest topics using AI model to make the content more interactive.
 *  Leaderboard on every contest and exciting prize pool for the top performers.
-*  Interactive problem-solving platform for Coding Enthusiast
+*  AI Chatbot for solving doubts and random thoughts.
 
 
 # Features 
