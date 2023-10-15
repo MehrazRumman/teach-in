@@ -113,8 +113,8 @@ An educational technology (EdTech) platform that includes online classes, live c
 
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/main.gif"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/1.png"   ></p>
-<p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/2.png"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/22.png"   ></p>
+<p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/2.png"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/3.png"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/4.png"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/44.png"   ></p>
@@ -123,12 +123,12 @@ An educational technology (EdTech) platform that includes online classes, live c
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/6.png"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/7.png"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/8.png"   ></p>
-<p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/a1.png"   ></p>
-<p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/a2.png"   ></p>
-<p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/a3.png"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/t1.png"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/t2.png"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/t3.png"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/t4.png"   ></p>
 <p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/t5.png"   ></p>
+<p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/a1.png"   ></p>
+<p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/a2.png"   ></p>
+<p align="center"><img src = "https://github.com/JHM69/teach-in/blob/main/ss/a3.png"   ></p>
 
